@@ -1,0 +1,11 @@
+
+
+
+$grid-gutter-width: 20px;
+
+@import "bootstrap/scss/bootstrap-grid";
+@import "bootstrap/scss/variables";
+
+.row {
+  --bs-gutter-y: 20px;
+}

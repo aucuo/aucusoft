@@ -1,0 +1,76 @@
+.note {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  &__wrapper {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+
+  &__icons {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  &__button {
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+
+  &__header {
+    margin-bottom: 5px;
+  }
+
+  &__text {
+    div {
+      margin-top: 10px;
+    }
+  }
+
+  &__text,
+  &__header {
+    position: relative;
+    width: calc(100% - 10px);
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 5px;
+    transition: .3s;
+
+    &:before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      top: -2.5px;
+      left: -5px;
+      right: -5px;
+      display: block;
+      height: 100%;
+      padding: 5px 0;
+      background-color: var(--gray-transparent);
+      border-radius: 10px;
+      opacity: 0;
+      transition: .3s;
+    }
+
+    &:focus,
+    &:focus-visible {
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+}
