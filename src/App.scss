@@ -17,20 +17,33 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  border: none;
   border-radius: 10px;
   padding: 9px;
   background-color: var(--gray-transparent);
   color: var(--gray1);
   font-size: 14px;
   cursor: pointer;
-  transition: .3s;
+  transition: .1s;
   border: 1px solid var(--gray5);
 
-  &:hover {
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &[disabled] {
+    cursor: default;
+    opacity: .5;
+  }
+
+  &:not([disabled]):hover {
     background-color: var(--gray-hover-transparent);
     color: #fff;
     --icon-stroke: #fff;
+  }
+
+  &:not([disabled]):active {
+    scale: .95;
   }
 
   &--active {
@@ -43,9 +56,21 @@
     border: none;
   }
 
+  &--nopadding {
+    padding: 0;
+  }
+
+  &--noborder {
+    border: none;
+  }
+
   &--small {
     padding: 6px 16px;
+  }
+
+  &--navigation {
     border: none;
+    border-radius: 99px;
   }
 }
 
@@ -73,7 +98,7 @@
       padding: 0 40px;
     }
     &:after {
-      z-index: 999;
+      z-index: 10;
       content: '';
       display: block;
       width: 24px;
@@ -85,20 +110,4 @@
       background-image: url(/public/icons/search-normal.svg);
     }
   }
-}
-
-.toast {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  position: fixed;
-  bottom: 20px;
-  right: -20px;
-  transform: translateX(-50%);
-  padding: 15px;
-  min-width: 200px;
-  background-color: var(--blue-transparent);
-  border-radius: 20px;
-  border: 1px solid var(--gray5);
 }

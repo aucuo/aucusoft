@@ -22,6 +22,7 @@
   --gray-transparent: rgba(51, 51, 51, 0.4);
   --gray-hover-transparent: rgba(51, 51, 51, 0.6);
   --blue-transparent: rgba(46, 68, 94, 0.4);
+  --blue-hover-transparent: rgba(46, 68, 94, 0.6);
   --white: #FFFFFF;
 
   /*State colors*/
@@ -32,7 +33,7 @@
   /* Scrollbar */
   --sb-track-color: transparent;
   --sb-thumb-color: var(--gray5);
-  --sb-size: 3px;
+  --sb-size: 5px;
 }
 
 * {
@@ -43,6 +44,7 @@
 
   &::-webkit-scrollbar {
     width: var(--sb-size);
+    height: var(--sb-size);
   }
 
   &::-webkit-scrollbar-track {
@@ -63,8 +65,43 @@
   }
 }
 
+::selection {
+  color: #fff;
+  background: var(--blue-hover-transparent);
+}
+
 html, body {
   min-height: 100vh;
+
+  &.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease;
+
+    &::after {
+      content: '';
+      display: block;
+      position: fixed;
+      z-index: 900;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .7);
+      backdrop-filter: blur(2px);
+    }
+  }
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.not-visible {
+  opacity: 0;
 }
 
 h1, h2, h3, h4, h5, h6, p {

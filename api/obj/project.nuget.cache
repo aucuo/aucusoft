@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "kVaSgLVmrWq6Lg2n2q1pPVeg3LlsyGZhkWStOroRiahBPUvUCYr8RzPXRoN2PMlbV6f5yfcKOSY9vKZ7tmactQ==",
+  "dgSpecHash": "QZ2cQVfUHJ3QUhlz2XZxTSObr/mabMwIv5vYVvrPSH733f9pp2910crPQPt3Bs8K0lJ3PJWwGTBO0QRoS1G+yg==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\Freelance\\aucusoft\\api\\api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\aucuo\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.18\\microsoft.entityframeworkcore.7.0.18.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.18\\microsoft.entityframeworkcore.abstractions.7.0.18.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.18\\microsoft.entityframeworkcore.analyzers.7.0.18.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.18\\microsoft.entityframeworkcore.design.7.0.18.nupkg.sha512",
+    "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.entityframeworkcore.proxies\\7.0.18\\microsoft.entityframeworkcore.proxies.7.0.18.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.18\\microsoft.entityframeworkcore.relational.7.0.18.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.18\\microsoft.entityframeworkcore.tools.7.0.18.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
@@ -31,6 +33,7 @@
     "C:\\Users\\aucuo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
+    "C:\\Users\\aucuo\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"

@@ -4,8 +4,10 @@ D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\appsettings.json
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\api.dll
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\api.runtimeconfig.json
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\api.pdb
+D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\Castle.Core.dll
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\Microsoft.EntityFrameworkCore.dll
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\Microsoft.Extensions.Caching.Abstractions.dll
 D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\publish\Microsoft.Extensions.Caching.Memory.dll

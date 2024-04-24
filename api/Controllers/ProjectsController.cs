@@ -1,14 +1,26 @@
 ﻿using api.Context;
+using api.Controllers;
 using api.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
-namespace api.Controllers
+public class ProjectsController : BaseController<Project, MyDbContext>
 {
-    public class ProjectsController : BaseController<Project, MyDbContext>
-    {
-        public ProjectsController(MyDbContext context) : base(context)
+    public ProjectsController(MyDbContext context) : base(context) {}
+    protected override Expression<Func<Project, object>>[] Includes =>
+        new Expression<Func<Project, object>>[]
         {
-        }
-    }
+            p => p.Client,
+            p => p.ProjectManager,
+        };
+    protected override Expression<Func<Project, object>> Projection =>
+        p => new
+        {
+            ID = p.ProjectId,
+            p.Name,
+            p.StartDate,
+            p.EndDate,
+            p.Budget,
+            Client = p.Client.Name,
+            Manager = p.ProjectManager.Name,
+        };
 }

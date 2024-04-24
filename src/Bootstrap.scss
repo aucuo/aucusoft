@@ -2,10 +2,83 @@
 
 
 $grid-gutter-width: 20px;
-
+$enable-caret: false;
 @import "bootstrap/scss/bootstrap-grid";
 @import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/dropdown.scss";
+@import "bootstrap/scss/spinners";
 
 .row {
   --bs-gutter-y: 20px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: -20px;
+  transform: translateX(-50%);
+  padding: 15px;
+  min-width: 200px;
+  background-color: var(--blue-transparent);
+  border-radius: 20px;
+  border: 1px solid var(--gray5);
+}
+
+.dropdown {
+  &-menu {
+    --bs-dropdown-border-radius: 10px;
+    --bs-dropdown-bg: var(--gray-hover-transparent);
+    --bs-dropdown-link-hover-bg: var(--blue-transparent);
+    --bs-dropdown-link-active-bg: var(--blue-hover-transparent);
+    --bs-dropdown-link-color: var(--gray1);
+    --bs-dropdown-link-hover-color: var(--white);
+
+    width: fit-content;
+    backdrop-filter: blur(4px);
+    margin-top: 8px;
+  }
+  &-item {
+    width: auto;
+    transition: .1s;
+
+    &-text {
+      display: flex;
+      gap: 5px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray3);
+      transition: .1s;
+    }
+
+    &-select {
+      box-sizing: content-box;
+      width: 100%;
+      min-width: 150px;
+      border-radius: 10px;
+      border: 1px solid var(--gray5);
+      background-color: var(--gray-hover-transparent);
+      padding: 3.5px 15px;
+      font-size: 14px;
+    }
+
+    &-input {
+      box-sizing: border-box;
+      width: 100%;
+      min-width: 150px;
+      border-radius: 10px;
+      border: 1px solid var(--gray5);
+      background-color: var(--gray-hover-transparent);
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+
+    &-button {
+      margin-left: auto;
+    }
+  }
 }

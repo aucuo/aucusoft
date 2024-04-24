@@ -1,0 +1,32 @@
+[
+  {
+    "projectName": "Project Alpha",
+    "budget": 121000,
+    "manager": "Shikovets Egor",
+    "status": "Active"
+  },
+  {
+    "projectName": "Project Beta",
+    "budget": 121000,
+    "manager": "Demchishina Anna",
+    "status": "Pause"
+  },
+  {
+    "projectName": "Project Gamma",
+    "budget": 121000,
+    "manager": "Shikovets Egor",
+    "status": "Ended"
+  },
+  {
+    "projectName": "Project Alpha",
+    "budget": 121000,
+    "manager": "Shikovets Egor",
+    "status": "Active"
+  },
+  {
+    "projectName": "Project Beta",
+    "budget": 121000,
+    "manager": "Demchishina Anna",
+    "status": "Pause"
+  }
+]

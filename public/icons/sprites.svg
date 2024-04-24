@@ -1,7 +1,14 @@
 <svg width="0" height="0" class="hidden" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
+        <symbol width="24" height="24" viewBox="0 0 24 24" id="refresh" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path style="transition: .3s" d="M7.7475 5.63257C8.1225 5.52007 8.535 5.44507 9 5.44507C11.07 5.44507 12.75 7.12507 12.75 9.19507C12.75 11.2651 11.07 12.9451 9 12.9451C6.93 12.9451 5.25 11.2651 5.25 9.19507C5.25 8.42257 5.4825 7.71007 5.88 7.11007" stroke="var(--icon-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path style="transition: .3s" d="M7.21497 5.73756L8.45997 4.30505" stroke="var(--icon-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path style="transition: .3s" d="M7.21497 5.73755L8.66997 6.80255" stroke="var(--icon-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path style="transition: .3s" d="M6.75 16.5H11.25C15 16.5 16.5 15 16.5 11.25V6.75C16.5 3 15 1.5 11.25 1.5H6.75C3 1.5 1.5 3 1.5 6.75V11.25C1.5 15 3 16.5 6.75 16.5Z" stroke="var(--icon-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+
         <symbol width="24" height="24" viewBox="0 0 24 24" id="arrow" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.06 6.68249L7.95 11.5725C8.5275 12.15 9.4725 12.15 10.05 11.5725L14.94 6.6825" stroke="var(--icon-stroke)" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path style="transition: .3s" d="M3.06 6.68249L7.95 11.5725C8.5275 12.15 9.4725 12.15 10.05 11.5725L14.94 6.6825" stroke="var(--icon-stroke)" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </symbol>
         <symbol width="24" height="24" viewBox="0 0 24 24" id="sad" fill="none" xmlns="http://www.w3.org/2000/svg">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

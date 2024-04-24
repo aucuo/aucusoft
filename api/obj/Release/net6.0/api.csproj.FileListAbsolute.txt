@@ -96,3 +96,5 @@ D:\Desktop\Freelance\aucusoft\api\obj\Release\net6.0\refint\api.dll
 D:\Desktop\Freelance\aucusoft\api\obj\Release\net6.0\api.pdb
 D:\Desktop\Freelance\aucusoft\api\obj\Release\net6.0\api.genruntimeconfig.cache
 D:\Desktop\Freelance\aucusoft\api\obj\Release\net6.0\ref\api.dll
+D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\Castle.Core.dll
+D:\Desktop\Freelance\aucusoft\api\bin\Release\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll

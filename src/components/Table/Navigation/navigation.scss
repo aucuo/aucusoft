@@ -1,0 +1,27 @@
+.navigation {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+
+  &__arrow {
+    width: 18px;
+    height: 18px;
+
+    &--left {
+      transform: rotate(90deg);
+    }
+
+    &--right {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &__page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray3);
+    font-family: IBM Plex Sans, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+}

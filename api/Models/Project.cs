@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace api.Models;
 
@@ -20,12 +21,10 @@ public partial class Project
     public int? ProjectManagerId { get; set; }
 
     public virtual Client? Client { get; set; }
-
+    public virtual Employee? ProjectManager { get; set; }
     public virtual ICollection<Clientfeedback> Clientfeedbacks { get; set; } = new List<Clientfeedback>();
 
     public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
-
-    public virtual Employee? ProjectManager { get; set; }
 
     public virtual ICollection<Projectdocument> Projectdocuments { get; set; } = new List<Projectdocument>();
 
