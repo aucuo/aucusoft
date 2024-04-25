@@ -5,7 +5,7 @@ namespace api.Models;
 
 public partial class Task
 {
-    public int TaskId { get; set; }
+    public int ID { get; set; }
 
     public int? ProjectId { get; set; }
 

@@ -5,7 +5,7 @@ namespace api.Models;
 
 public partial class Meeting
 {
-    public int MeetingId { get; set; }
+    public int ID { get; set; }
 
     public int? ProjectId { get; set; }
 

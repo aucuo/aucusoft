@@ -24,7 +24,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Client", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ClientID");
@@ -50,7 +50,7 @@ namespace api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("ClientId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.ToTable("clients", (string)null);
@@ -58,7 +58,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Clientfeedback", b =>
                 {
-                    b.Property<int>("FeedbackId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("FeedbackID");
@@ -77,7 +77,7 @@ namespace api.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("text");
 
-                    b.HasKey("FeedbackId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "ClientId" }, "ClientID");
@@ -89,7 +89,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Department", b =>
                 {
-                    b.Property<int>("DepartmentId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("DepartmentID");
@@ -103,7 +103,7 @@ namespace api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("DepartmentId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "ManagerId" }, "fk_departments_managers");
@@ -113,7 +113,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Employee", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("EmployeeID");
@@ -139,7 +139,7 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("PositionID");
 
-                    b.HasKey("EmployeeId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "DepartmentId" }, "DepartmentID");
@@ -151,7 +151,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Employeetask", b =>
                 {
-                    b.Property<int>("EmployeeTaskId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("EmployeeTaskID");
@@ -170,7 +170,7 @@ namespace api.Migrations
                     b.Property<int?>("TimeSpent")
                         .HasColumnType("int");
 
-                    b.HasKey("EmployeeTaskId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "TaskId" }, "TaskID");
@@ -182,7 +182,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Manager", b =>
                 {
-                    b.Property<int>("ManagerId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ManagerID");
@@ -195,7 +195,7 @@ namespace api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("ManagerId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.ToTable("managers", (string)null);
@@ -203,7 +203,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Meeting", b =>
                 {
-                    b.Property<int>("MeetingId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("MeetingID");
@@ -218,7 +218,7 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ProjectID");
 
-                    b.HasKey("MeetingId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "ProjectId" }, "ProjectID")
@@ -229,7 +229,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Position", b =>
                 {
-                    b.Property<int>("PositionId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("PositionID");
@@ -242,7 +242,7 @@ namespace api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("PositionId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.ToTable("positions", (string)null);
@@ -250,7 +250,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Project", b =>
                 {
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ProjectID");
@@ -278,7 +278,7 @@ namespace api.Migrations
                     b.Property<DateOnly?>("StartDate")
                         .HasColumnType("date");
 
-                    b.HasKey("ProjectId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "ClientId" }, "ClientID")
@@ -291,7 +291,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Projectdocument", b =>
                 {
-                    b.Property<int>("DocumentId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("DocumentID");
@@ -312,7 +312,7 @@ namespace api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("DocumentId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "ProjectId" }, "ProjectID")
@@ -323,7 +323,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Projecttechnology", b =>
                 {
-                    b.Property<int>("ProjectTechnologyId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ProjectTechnologyID");
@@ -336,7 +336,7 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TechnologyID");
 
-                    b.HasKey("ProjectTechnologyId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "ProjectId" }, "ProjectID")
@@ -349,7 +349,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Task", b =>
                 {
-                    b.Property<int>("TaskId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("TaskID");
@@ -374,7 +374,7 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("StatusID");
 
-                    b.HasKey("TaskId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "AssignedTo" }, "AssignedTo");
@@ -389,7 +389,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Taskstatus", b =>
                 {
-                    b.Property<int>("StatusId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("StatusID");
@@ -399,7 +399,7 @@ namespace api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("StatusId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.ToTable("taskstatuses", (string)null);
@@ -407,7 +407,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Technology", b =>
                 {
-                    b.Property<int>("TechnologyId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("TechnologyID");
@@ -420,7 +420,7 @@ namespace api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("TechnologyId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.ToTable("technologies", (string)null);
@@ -428,7 +428,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Worklog", b =>
                 {
-                    b.Property<int>("WorkLogId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("WorkLogID");
@@ -447,7 +447,7 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ProjectID");
 
-                    b.HasKey("WorkLogId")
+                    b.HasKey("ID")
                         .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "EmployeeId" }, "EmployeeID");
@@ -463,11 +463,13 @@ namespace api.Migrations
                     b.HasOne("api.Models.Client", "Client")
                         .WithMany("Clientfeedbacks")
                         .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("clientfeedback_ibfk_2");
 
                     b.HasOne("api.Models.Project", "Project")
                         .WithMany("Clientfeedbacks")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("clientfeedback_ibfk_1");
 
                     b.Navigation("Client");
@@ -491,11 +493,13 @@ namespace api.Migrations
                     b.HasOne("api.Models.Department", "Department")
                         .WithMany("Employees")
                         .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("employees_ibfk_2");
 
                     b.HasOne("api.Models.Position", "Position")
                         .WithMany("Employees")
                         .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("employees_ibfk_1");
 
                     b.Navigation("Department");
@@ -514,6 +518,7 @@ namespace api.Migrations
                     b.HasOne("api.Models.Task", "Task")
                         .WithMany("Employeetasks")
                         .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("employeetasks_ibfk_1");
 
                     b.Navigation("Employee");
@@ -526,6 +531,7 @@ namespace api.Migrations
                     b.HasOne("api.Models.Project", "Project")
                         .WithMany("Meetings")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("meetings_ibfk_1");
 
                     b.Navigation("Project");
@@ -536,11 +542,13 @@ namespace api.Migrations
                     b.HasOne("api.Models.Client", "Client")
                         .WithMany("Projects")
                         .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("projects_ibfk_1");
 
                     b.HasOne("api.Models.Employee", "ProjectManager")
                         .WithMany("Projects")
                         .HasForeignKey("ProjectManagerId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("projects_ibfk_2");
 
                     b.Navigation("Client");
@@ -553,6 +561,7 @@ namespace api.Migrations
                     b.HasOne("api.Models.Project", "Project")
                         .WithMany("Projectdocuments")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("projectdocuments_ibfk_1");
 
                     b.Navigation("Project");
@@ -563,11 +572,13 @@ namespace api.Migrations
                     b.HasOne("api.Models.Project", "Project")
                         .WithMany("Projecttechnologies")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("projecttechnologies_ibfk_1");
 
                     b.HasOne("api.Models.Technology", "Technology")
                         .WithMany("Projecttechnologies")
                         .HasForeignKey("TechnologyId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("projecttechnologies_ibfk_2");
 
                     b.Navigation("Project");
@@ -580,16 +591,19 @@ namespace api.Migrations
                     b.HasOne("api.Models.Employee", "AssignedToNavigation")
                         .WithMany("Tasks")
                         .HasForeignKey("AssignedTo")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("tasks_ibfk_2");
 
                     b.HasOne("api.Models.Project", "Project")
                         .WithMany("Tasks")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("tasks_ibfk_1");
 
                     b.HasOne("api.Models.Taskstatus", "Status")
                         .WithMany("Tasks")
                         .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("tasks_ibfk_3");
 
                     b.Navigation("AssignedToNavigation");
@@ -604,11 +618,13 @@ namespace api.Migrations
                     b.HasOne("api.Models.Employee", "Employee")
                         .WithMany("Worklogs")
                         .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("worklogs_ibfk_1");
 
                     b.HasOne("api.Models.Project", "Project")
                         .WithMany("Worklogs")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("worklogs_ibfk_2");
 
                     b.Navigation("Employee");

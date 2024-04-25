@@ -5,7 +5,7 @@ namespace api.Models;
 
 public partial class Position
 {
-    public int PositionId { get; set; }
+    public int ID { get; set; }
 
     public string Title { get; set; } = null!;
 

@@ -5,7 +5,7 @@ namespace api.Models;
 
 public partial class Worklog
 {
-    public int WorkLogId { get; set; }
+    public int ID { get; set; }
 
     public int? EmployeeId { get; set; }
 

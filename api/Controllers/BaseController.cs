@@ -176,19 +176,41 @@ namespace api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, TEntity item)
         {
-            if (id != (int)item.GetType().GetProperty("Id").GetValue(item))
+            if (item == null)
             {
-                return BadRequest();
+                return BadRequest("Item is null");
             }
 
-            _context.Entry(item).State = EntityState.Modified;
+            var existingItem = await _dbSet.FindAsync(id);
+            if (existingItem == null)
+            {
+                return NotFound();
+            }
+
+            // Обновляем только те поля, которые были переданы
+            var itemProperties = item.GetType().GetProperties();
+            foreach (var property in itemProperties)
+            {
+                var newValue = property.GetValue(item);
+                if (newValue != null) // проверяем, что новое значение поля не null
+                {
+                    var existingValue = property.GetValue(existingItem);
+                    if (existingValue != newValue)
+                    {
+                        property.SetValue(existingItem, newValue);
+                    }
+                }
+            }
+
+            _context.Entry(existingItem).State = EntityState.Modified;
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await _dbSet.AnyAsync(e => (int)e.GetType().GetProperty("Id").GetValue(e) == id))
+                if (!await _dbSet.AnyAsync(e => (int)e.GetType().GetProperty("ID").GetValue(e) == id))
                 {
                     return NotFound();
                 }
@@ -206,7 +228,7 @@ namespace api.Controllers
         {
             _dbSet.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("Get", new { id = item.GetType().GetProperty("Id").GetValue(item) }, item);
+            return CreatedAtAction("GetItem", new { id = item.GetType().GetProperty("ID").GetValue(item) }, item);
         }
 
         [HttpDelete("{id}")]

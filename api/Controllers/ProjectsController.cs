@@ -15,7 +15,7 @@ public class ProjectsController : BaseController<Project, MyDbContext>
     protected override Expression<Func<Project, object>> Projection =>
         p => new
         {
-            ID = p.ProjectId,
+            ID = p.ID,
             p.Name,
             p.StartDate,
             p.EndDate,

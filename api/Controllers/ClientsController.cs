@@ -16,7 +16,7 @@ namespace api.Controllers
         protected override Expression<Func<Client, object>> Projection =>
             c => new
             {
-                ID = c.ClientId,
+                ID = c.ID,
                 c.Name,
                 c.Industry,
                 c.ContactPerson,

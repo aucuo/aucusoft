@@ -18,7 +18,7 @@ namespace api.Controllers
         protected override Expression<Func<Clientfeedback, object>> Projection =>
             cf => new
             {
-                ID = cf.FeedbackId,
+                ID = cf.ID,
                 Project = cf.Project.Name,
                 cf.Text,
                 cf.Date,

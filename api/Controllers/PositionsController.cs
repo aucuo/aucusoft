@@ -16,7 +16,7 @@ namespace api.Controllers
         protected override Expression<Func<Position, object>> Projection =>
             p => new
             {
-                ID = p.PositionId,
+                ID = p.ID,
                 p.Title,
                 p.SalaryGrade,
             };

@@ -5,7 +5,7 @@ namespace api.Models;
 
 public partial class Manager
 {
-    public int ManagerId { get; set; }
+    public int ID { get; set; }
 
     public string? Name { get; set; }
 
