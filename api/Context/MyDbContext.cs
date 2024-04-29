@@ -213,13 +213,13 @@ public partial class MyDbContext : DbContext
 
             entity.HasIndex(e => e.ClientId, "ClientID");
 
-            entity.HasIndex(e => e.ProjectManagerId, "ProjectManagerID");
+            entity.HasIndex(e => e.ManagerId, "ManagerId");
 
             entity.Property(e => e.ID).HasColumnName("ProjectID");
             entity.Property(e => e.Budget).HasPrecision(10, 2);
             entity.Property(e => e.ClientId).HasColumnName("ClientID");
             entity.Property(e => e.Name).HasMaxLength(255);
-            entity.Property(e => e.ProjectManagerId).HasColumnName("ProjectManagerID");
+            entity.Property(e => e.ManagerId).HasColumnName("ManagerId");
 
             entity.HasOne(d => d.Client).WithMany(p => p.Projects)
                 .HasForeignKey(d => d.ClientId)
@@ -227,7 +227,7 @@ public partial class MyDbContext : DbContext
                 .HasConstraintName("projects_ibfk_1");
 
             entity.HasOne(d => d.ProjectManager).WithMany(p => p.Projects)
-                .HasForeignKey(d => d.ProjectManagerId)
+                .HasForeignKey(d => d.ManagerId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("projects_ibfk_2");
         });

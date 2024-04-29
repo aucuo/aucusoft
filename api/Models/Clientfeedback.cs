@@ -11,7 +11,7 @@ public partial class Clientfeedback
 
     public int? ClientId { get; set; }
 
-    public DateOnly? Date { get; set; }
+    public DateTime? Date { get; set; }
 
     public string? Text { get; set; }
 

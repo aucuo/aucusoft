@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './table-input.scss';
 import {useTableStore} from "@components/Table/TableStoreContext.tsx";
 
@@ -6,9 +6,11 @@ interface TableInputProps {
     index: number;
     keyField: string;
     value: string;
+    type?: string;
+    id: number;
 }
 
-export const TableInput = ({ index, keyField, value }: TableInputProps) => {
+export const TableInput = ({ index, keyField, value, type = 'text', id}: TableInputProps) => {
     const TableStore = useTableStore();
     const [inputValue, setInputValue] = useState(value);
     const [isFocused, setIsFocused] = useState(false);
@@ -24,7 +26,7 @@ export const TableInput = ({ index, keyField, value }: TableInputProps) => {
     }, [isFocused]);
 
     useEffect(() => {
-        setInputValue(value); // Обновляем локальное состояние при изменении внешнего value
+        setInputValue(value);
     }, [value]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,25 +35,27 @@ export const TableInput = ({ index, keyField, value }: TableInputProps) => {
 
     const handleBlur = () => {
         setIsFocused(false);
-        setInputValue(value); // Восстанавливаем исходное значение при потере фокуса
+        setInputValue(value);
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            TableStore.updateItem(index, keyField, inputValue);
-            TableStore.submitData(); // Вызов функции отправки данных
+            await TableStore.updateItem(index, keyField, inputValue, id);
             (event.target as HTMLInputElement).blur(); // Убираем фокус с input
         }
         if (event.key === 'Escape') {
             (event.target as HTMLInputElement).blur(); // Убираем фокус с input
+            //todo разобраться с заменой значения
+            setInputValue(value);
         }
     };
 
     return (
         <input
             className="table-input"
-            type="text"
-            value={inputValue}
+            type={type}
+            value={inputValue?.toString() || ""}
+            placeholder={"N/A"}
             onChange={handleChange}
             onFocus={() => setIsFocused(true)}
             onBlur={handleBlur}

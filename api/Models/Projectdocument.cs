@@ -13,7 +13,7 @@ public partial class Projectdocument
 
     public string? DocumentPath { get; set; }
 
-    public DateOnly? CreationDate { get; set; }
+    public DateTime? CreationDate { get; set; }
 
     public virtual Project? Project { get; set; }
 }

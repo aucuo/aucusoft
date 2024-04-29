@@ -1,8 +1,10 @@
 // components/TableBody.tsx
-import { observer } from "mobx-react";
-import { TableInput } from "@components/Table/TableInput/TableInput";
-import './table-body.scss'
+import {observer} from "mobx-react";
+import {TableInput} from "@components/Table/TableInput/TableInput";
 import {useTableStore} from "@components/Table/TableStoreContext.tsx";
+import './table-body.scss'
+import {TableSelect} from "@components/Table/TableSelect/TableSelect.tsx";
+
 export const TableBody = observer(() => {
     const TableStore = useTableStore();
 
@@ -19,13 +21,36 @@ export const TableBody = observer(() => {
                     />
                 </td>
                 {Object.keys(item).map(header => (
-                    <td key={`${header}-${index}`} className="table__item">
-                        <TableInput
-                            index={index}
-                            keyField={header}
-                            value={item[header]?.toString() || "N/A"}
-                        />
-                    </td>
+                    header !== 'id' ? (
+                        <td key={`${header}-${index}`} className="table__item">
+                            {
+                                header.endsWith('FK') ? (
+                                    <TableSelect
+                                        index={index}
+                                        keyField={header}
+                                        value={item[header]}
+                                        options={TableStore.additionalData[header] || []}
+                                        id={item.id}
+                                    />
+                                ) : header.endsWith('Date') ? (
+                                    <TableInput
+                                        index={index}
+                                        keyField={header}
+                                        value={item[header]?.split('T')[0]}
+                                        id={item.id}
+                                        type="date" // Указываем, что это поле даты
+                                    />
+                                ) : (
+                                    <TableInput
+                                        index={index}
+                                        keyField={header}
+                                        value={item[header]}
+                                        id={item.id}
+                                    />
+                                )
+                            }
+                        </td>
+                    ) : ("")
                 ))}
             </tr>
         ))}

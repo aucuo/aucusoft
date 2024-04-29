@@ -4,7 +4,6 @@ interface AsideProps {
     onMenuItemClick(newContent:string): void;
 }
 export function Aside({activePage, onMenuItemClick} : AsideProps) {
-    console.log(activePage)
     return (
         <>
             <aside className='sidebar'>

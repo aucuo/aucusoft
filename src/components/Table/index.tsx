@@ -9,22 +9,21 @@ import {TableStoreProvider} from './TableStoreContext.tsx'; // Импорт ко
 import './table.scss';
 import {useEffect, useMemo} from "react";
 import {Spinner} from "react-bootstrap";
-import TableStore from "@components/Table/TableStore.ts";
+import TableStore from "@/stores/TableStore.ts";
 
 export const Table = observer(({tableName, search = true, navigation = true}: {
     tableName: string,
     search?: boolean,
     navigation?: boolean,
 }) => {
-    const tableStore = useMemo(() => new TableStore(), [tableName]);
+    const tableStore = useMemo(() => new TableStore(tableName), [tableName]);
 
     useEffect(() => {
-        tableStore.setBaseUrl(tableName);
         tableStore.loadData();
     }, [tableName, tableStore]);
 
-    const refreshData = () => {
-        tableStore.loadData(); // Предполагаем, что loadData это метод для обновления данных
+    const refreshData = async () => {
+        await tableStore.loadData();
     };
 
     if (tableName === undefined || tableStore.data.length === 0) {

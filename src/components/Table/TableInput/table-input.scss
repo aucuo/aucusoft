@@ -8,6 +8,23 @@
   border-radius: 5px;
   transition: .2s color, background-color;
 
+  &[type="date"] {
+    cursor: text;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .4;
+      background-color: var(--gray-hover-transparent);
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
   &:focus {
     z-index: 999;
     max-width: 200px !important;

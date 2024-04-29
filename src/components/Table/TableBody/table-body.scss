@@ -34,14 +34,14 @@
     }
 
     &:nth-child(2) {
-      input {
+      input, select {
         width: fit-content;
         max-width: 120px;
       }
     }
 
     &:not(:nth-child(2)) {
-      input {
+      input, select {
         color: var(--gray3);
       }
     }

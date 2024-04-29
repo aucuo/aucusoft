@@ -129,7 +129,7 @@ function App() {
                 <ToastContainer>
                     <Toast onClose={toggleShow} show={show} delay={3000} autohide>
                         Text
-                        <button className="button"onClick={toggleShow}>OK</button>
+                        <button className="button" onClick={toggleShow}>OK</button>
                     </Toast>
                 </ToastContainer>
             </div>

@@ -13,7 +13,7 @@ public partial class Employeetask
 
     public int? TimeSpent { get; set; }
 
-    public DateOnly? Date { get; set; }
+    public DateTime? Date { get; set; }
 
     public virtual Employee? Employee { get; set; }
 

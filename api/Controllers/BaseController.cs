@@ -14,7 +14,7 @@ namespace api.Controllers
         where TEntity : class
         where TContext : DbContext
     {
-        private readonly TContext _context;
+        protected readonly TContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
         public BaseController(TContext context)
@@ -25,9 +25,10 @@ namespace api.Controllers
 
         // Абстрактное свойство для указания связей
         protected abstract Expression<Func<TEntity, object>>[] Includes { get; }
-
         // Абстрактный метод для определения проекции
         protected abstract Expression<Func<TEntity, object>> Projection { get; }
+        // Абстрактный метод для получения дополнительных данных
+        protected abstract Task<object> GetAdditionalDataAsync();
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetItem(int id)
@@ -57,8 +58,8 @@ namespace api.Controllers
 
         [HttpGet]
         public async Task<ActionResult<object>> GetAll(
-            [FromQuery] int pageIndex = 0,
-            [FromQuery] int pageSize = 0,
+            [FromQuery] int pageIndex = 1,
+            [FromQuery] int pageSize = 1,
             [FromQuery] string sortBy = null,
             [FromQuery] string sortDirection = "asc",
             [FromQuery] string searchQuery = null,
@@ -162,11 +163,13 @@ namespace api.Controllers
 
             // Apply pagination
             var data = await projectedQuery.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            var additional = await GetAdditionalDataAsync();
             var totalItems = await query.CountAsync();
 
             return Ok(new
             {
                 data,
+                additional,
                 pageIndex = pageIndex,
                 pageSize = pageSize,
                 totalPages = (int)Math.Ceiling((double)totalItems / pageSize)

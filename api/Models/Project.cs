@@ -10,15 +10,15 @@ public partial class Project
 
     public string Name { get; set; } = null!;
 
-    public DateOnly? StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
 
-    public DateOnly? EndDate { get; set; }
+    public DateTime? EndDate { get; set; }
 
     public decimal? Budget { get; set; }
 
     public int? ClientId { get; set; }
 
-    public int? ProjectManagerId { get; set; }
+    public int? ManagerId { get; set; }
 
     public virtual Client? Client { get; set; }
     public virtual Employee? ProjectManager { get; set; }

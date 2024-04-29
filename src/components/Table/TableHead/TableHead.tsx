@@ -16,7 +16,9 @@ export const TableHead = observer(() => {
                 />
             </th>
             {TableStore.data.length > 0 && Object.keys(TableStore.data[0]).map(header => (
-                <th key={header} className="table__item">{header}</th>
+                header !== 'id' ? (
+                    <th key={header} className="table__item">{header}</th>
+                ) : ("")
             ))}
         </tr>
         </thead>

@@ -266,14 +266,14 @@ namespace api.Migrations
                     b.Property<DateOnly?>("EndDate")
                         .HasColumnType("date");
 
+                    b.Property<int?>("ManagerId")
+                        .HasColumnType("int")
+                        .HasColumnName("ManagerId");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
-
-                    b.Property<int?>("ProjectManagerId")
-                        .HasColumnType("int")
-                        .HasColumnName("ProjectManagerID");
 
                     b.Property<DateOnly?>("StartDate")
                         .HasColumnType("date");
@@ -284,7 +284,7 @@ namespace api.Migrations
                     b.HasIndex(new[] { "ClientId" }, "ClientID")
                         .HasDatabaseName("ClientID1");
 
-                    b.HasIndex(new[] { "ProjectManagerId" }, "ProjectManagerID");
+                    b.HasIndex(new[] { "ManagerId" }, "ManagerId");
 
                     b.ToTable("projects", (string)null);
                 });
@@ -547,7 +547,7 @@ namespace api.Migrations
 
                     b.HasOne("api.Models.Employee", "ProjectManager")
                         .WithMany("Projects")
-                        .HasForeignKey("ProjectManagerId")
+                        .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("projects_ibfk_2");
 

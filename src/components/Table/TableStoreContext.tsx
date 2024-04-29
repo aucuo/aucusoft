@@ -1,6 +1,6 @@
 // TableStoreContext.ts
 import React from 'react';
-import TableStore from "@components/Table/TableStore.ts";
+import TableStore from "@/stores/TableStore.ts";
 
 export const TableStoreContext = React.createContext<TableStore | undefined>(undefined);
 

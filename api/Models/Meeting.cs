@@ -9,7 +9,7 @@ public partial class Meeting
 
     public int? ProjectId { get; set; }
 
-    public DateOnly? MeetingDate { get; set; }
+    public DateTime? MeetingDate { get; set; }
 
     public string? Agenda { get; set; }
 
