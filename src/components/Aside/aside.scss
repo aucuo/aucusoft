@@ -12,7 +12,7 @@
   align-items: start;
   padding: 40px 10px;
   background-color: var(--gray-transparent);
-  border-right: 1px solid var(--gray5);
+  border-right: 1px solid var(--border-color);
   border-radius: 0 20px 20px 0;
   user-select: none;
 
@@ -62,12 +62,11 @@
     
     &--active {
       color: #fff;
-      --icon-stroke: #fff;
+      --icon-stroke: var(--icon-stroke-active);
     }
 
     &:hover {
       color: #fff;
-      --icon-stroke: #fff;
       background-color: var(--gray-transparent);
       border-radius: 10px;
     }

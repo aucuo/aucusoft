@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.2:3306
--- Время создания: Апр 25 2024 г., 02:37
+-- Время создания: Май 01 2024 г., 01:36
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.21
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `aucusoft`
+-- База данных: `aucusoft_v2`
 --
 
 -- --------------------------------------------------------
@@ -31,8 +31,8 @@ CREATE TABLE `clientfeedback` (
   `FeedbackID` int NOT NULL,
   `ProjectID` int DEFAULT NULL,
   `ClientID` int DEFAULT NULL,
-  `Date` date DEFAULT NULL,
-  `Text` text
+  `Date` datetime(6) DEFAULT NULL,
+  `Text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -40,12 +40,10 @@ CREATE TABLE `clientfeedback` (
 --
 
 INSERT INTO `clientfeedback` (`FeedbackID`, `ProjectID`, `ClientID`, `Date`, `Text`) VALUES
-(1, 1, 1, '2024-02-15', 'Updated feedback text due to client review.'),
-(2, 2, 2, '2024-03-15', 'The project was delivered on time, but there were some issues with the initial deployment.'),
-(3, 3, 3, '2024-04-15', 'Excellent communication and project management.'),
-(6, 1, 5, '2024-02-15', 'Updated feedback text due to client review.'),
-(7, 1, 1, '2024-02-15', 'Updated feedback text due to client review.'),
-(8, 4, 2, '2024-07-01', 'This is a newly added feedback.');
+(2, 1, 2, '2024-03-15 00:00:00.000000', 'The project was delivered on time, but there were some issues with the initial deployment.'),
+(3, 3, 3, '2024-04-15 00:00:00.000000', 'Excellent communication and project management.'),
+(6, 1, 5, '2024-02-15 00:00:00.000000', 'Updated feedback text due to client review.'),
+(8, 4, 2, '2024-07-01 00:00:00.000000', 'This is a newly added feedback.');
 
 -- --------------------------------------------------------
 
@@ -55,11 +53,11 @@ INSERT INTO `clientfeedback` (`FeedbackID`, `ProjectID`, `ClientID`, `Date`, `Te
 
 CREATE TABLE `clients` (
   `ClientID` int NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Industry` varchar(255) DEFAULT NULL,
-  `ContactPerson` varchar(255) DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `Phone` varchar(50) DEFAULT NULL
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Industry` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ContactPerson` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -67,33 +65,11 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`ClientID`, `Name`, `Industry`, `ContactPerson`, `Email`, `Phone`) VALUES
-(1, 'NAME', 'INDUSTRY', 'CONTACT', 'EMAIL', 'PHONE'),
 (2, 'Beta LLC', 'Finance', 'Jane Smith', 'janesmith@betallc.com', '80293284224'),
 (3, 'Gamma Inc', 'Healthcare', 'Mike Brown', 'mikebrown@gammainc.com', '80293284224'),
 (4, 'Delta Technologies', 'Education', 'Susan Clark', 'susanclark@deltatech.com', '80293284224'),
 (5, 'Epsilon Services', 'Retail', 'Alex Johnson', 'alexjohnson@epsilonservices.com', '80293284224'),
-(6, 'Aucusoft', 'Finance', 'Egor Shikovets', 'Egor Shikovets@example.com', '80293284224'),
-(15, 'NAME', 'INDUSTRY', 'CONTACT', 'EMAIL', 'PHONE');
-
---
--- Триггеры `clients`
---
-DELIMITER $$
-CREATE TRIGGER `trg_DeleteClients` BEFORE DELETE ON `clients` FOR EACH ROW BEGIN
-    IF OLD.Industry = 'Retail' THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Удаление клиентов из индустрии Retail запрещено';
-    END IF;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `trg_InsertClients` BEFORE INSERT ON `clients` FOR EACH ROW BEGIN
-    IF NEW.Email IS NULL OR NEW.Email = '' THEN
-        SET NEW.Email = CONCAT(NEW.ContactPerson, '@example.com');
-    END IF;
-END
-$$
-DELIMITER ;
+(6, 'Aucusoft', 'Finance', 'Egor Shikovets', 'Egor Shikovets@example.com', '80293284224');
 
 -- --------------------------------------------------------
 
@@ -103,7 +79,7 @@ DELIMITER ;
 
 CREATE TABLE `departments` (
   `DepartmentID` int NOT NULL,
-  `Name` varchar(255) NOT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `ManagerID` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -112,12 +88,12 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`DepartmentID`, `Name`, `ManagerID`) VALUES
-(1, 'Development', 4),
-(2, 'Sales', 1),
+(1, 'Development', 1),
+(2, 'Sales', 2),
 (3, 'HR', 3),
-(4, 'Marketing', 2),
-(5, 'Finance', 5),
-(6, 'IT', 1);
+(4, 'Marketing', 4),
+(5, 'Finance', 8),
+(6, 'IT', 9);
 
 -- --------------------------------------------------------
 
@@ -127,11 +103,11 @@ INSERT INTO `departments` (`DepartmentID`, `Name`, `ManagerID`) VALUES
 
 CREATE TABLE `employees` (
   `EmployeeID` int NOT NULL,
-  `Name` varchar(255) NOT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `PositionID` int DEFAULT NULL,
   `DepartmentID` int DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `Phone` varchar(50) DEFAULT NULL
+  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -139,11 +115,11 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`EmployeeID`, `Name`, `PositionID`, `DepartmentID`, `Email`, `Phone`) VALUES
-(1, 'Ivan Ivanov', 1, 1, 'new_email@example.com', '1234567890'),
+(1, 'Ivan Ivanov', 2, 1, 'new_email@example.com', '1234567890'),
 (2, 'Petr Petrov', 2, 2, 'petrov@example.com', '0987654321'),
 (3, 'Sidor Sidorov', 3, 3, 'sidorov@example.com', '1122334455'),
-(4, 'Anna Annanova', 4, 4, 'annanova@example.com', '2233445566'),
-(5, 'Olga Olganova', 5, 5, 'olganova@example.com', '3344556677');
+(4, 'Anna Annanova', 4, 6, 'annanova@example.com', '2233445566'),
+(5, 'Olga Olganova2', 5, 5, 'olganova@example.com', '3344556677');
 
 -- --------------------------------------------------------
 
@@ -156,7 +132,7 @@ CREATE TABLE `employeetasks` (
   `TaskID` int DEFAULT NULL,
   `EmployeeID` int DEFAULT NULL,
   `TimeSpent` int DEFAULT NULL,
-  `Date` date DEFAULT NULL
+  `Date` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -164,11 +140,11 @@ CREATE TABLE `employeetasks` (
 --
 
 INSERT INTO `employeetasks` (`EmployeeTaskID`, `TaskID`, `EmployeeID`, `TimeSpent`, `Date`) VALUES
-(1, 1, 1, 8, '2024-02-01'),
-(2, 2, 2, 6, '2024-02-12'),
-(3, 3, 1, 7, '2024-02-06'),
-(4, 4, 3, 8, '2024-02-17'),
-(5, 5, 2, 5, '2024-02-27');
+(1, 1, 1, 8, '2024-02-01 00:00:00.000000'),
+(2, 2, 1, 6, '2024-02-12 00:00:00.000000'),
+(3, 3, 1, 7, '2024-02-06 00:00:00.000000'),
+(4, 4, 3, 8, '2024-02-17 00:00:00.000000'),
+(5, 5, 2, 5, '2024-02-27 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -178,8 +154,8 @@ INSERT INTO `employeetasks` (`EmployeeTaskID`, `TaskID`, `EmployeeID`, `TimeSpen
 
 CREATE TABLE `managers` (
   `ManagerID` int NOT NULL,
-  `Name` varchar(255) DEFAULT NULL,
-  `Position` varchar(255) DEFAULT NULL
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -192,39 +168,8 @@ INSERT INTO `managers` (`ManagerID`, `Name`, `Position`) VALUES
 (3, 'Igor Sidorov', 'IT Manager'),
 (4, 'Elena Popova', 'Development Manager'),
 (5, 'Dmitry Kuznetsov', 'Product Manager'),
-(8, 'Egor Shikovets', 'Помощник грузчика'),
+(8, 'Egor Shikovets', 'Lead of company'),
 (9, 'Jane Smith', 'Account Manager');
-
---
--- Триггеры `managers`
---
-DELIMITER $$
-CREATE TRIGGER `trg_AfterUpdateManagers` AFTER UPDATE ON `managers` FOR EACH ROW BEGIN
-    IF OLD.Position <> NEW.Position THEN
-        INSERT INTO managers_log (ManagerID, OldPosition, NewPosition, ChangeDate)
-        VALUES (OLD.ManagerID, OLD.Position, NEW.Position, NOW());
-    END IF;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `trg_BeforeInsertManagers` BEFORE INSERT ON `managers` FOR EACH ROW BEGIN
-    DECLARE cnt INT;
-    SELECT COUNT(*) INTO cnt FROM managers WHERE Name = NEW.Name;
-    IF cnt > 0 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Менеджер с таким именем уже существует.';
-    END IF;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `trg_UpdateManagers` BEFORE UPDATE ON `managers` FOR EACH ROW BEGIN
-    IF OLD.Name <> NEW.Name THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Изменение имени менеджера запрещено';
-    END IF;
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -235,8 +180,8 @@ DELIMITER ;
 CREATE TABLE `meetings` (
   `MeetingID` int NOT NULL,
   `ProjectID` int DEFAULT NULL,
-  `MeetingDate` date DEFAULT NULL,
-  `Agenda` text
+  `MeetingDate` datetime(6) DEFAULT NULL,
+  `Agenda` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -244,9 +189,9 @@ CREATE TABLE `meetings` (
 --
 
 INSERT INTO `meetings` (`MeetingID`, `ProjectID`, `MeetingDate`, `Agenda`) VALUES
-(3, 2, '2024-04-05', 'Промежуточный отчет'),
-(4, 3, '2024-04-20', 'Тестирование продукта'),
-(5, 4, '2024-05-10', 'Запуск проекта');
+(3, 2, '2003-08-24 00:00:00.000000', 'Промежуточный отчет'),
+(4, 2, '2024-04-20 00:00:00.000000', 'Тестирование продукта'),
+(5, 3, '2024-05-10 00:00:00.000000', 'Запуск проекта');
 
 -- --------------------------------------------------------
 
@@ -256,7 +201,7 @@ INSERT INTO `meetings` (`MeetingID`, `ProjectID`, `MeetingDate`, `Agenda`) VALUE
 
 CREATE TABLE `positions` (
   `PositionID` int NOT NULL,
-  `Title` varchar(255) NOT NULL,
+  `Title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `SalaryGrade` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -280,9 +225,9 @@ INSERT INTO `positions` (`PositionID`, `Title`, `SalaryGrade`) VALUES
 CREATE TABLE `projectdocuments` (
   `DocumentID` int NOT NULL,
   `ProjectID` int DEFAULT NULL,
-  `Title` varchar(255) NOT NULL,
-  `DocumentPath` varchar(255) DEFAULT NULL,
-  `CreationDate` date DEFAULT NULL
+  `Title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `DocumentPath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `CreationDate` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -290,11 +235,11 @@ CREATE TABLE `projectdocuments` (
 --
 
 INSERT INTO `projectdocuments` (`DocumentID`, `ProjectID`, `Title`, `DocumentPath`, `CreationDate`) VALUES
-(1, 1, 'Техническое задание', '/docs/project1/specification.pdf', '2024-02-15'),
-(2, 1, 'План проекта', '/docs/project1/plan.pdf', '2024-02-20'),
-(3, 2, 'Архитектура системы', '/docs/project2/architecture.pdf', '2024-03-01'),
-(4, 3, 'Тестовый план', '/docs/project3/test_plan.pdf', '2024-03-15'),
-(5, 4, 'Пользовательская документация', '/docs/project4/user_guide.pdf', '2024-04-01');
+(1, 1, 'Техническое задание', '/docs/project1/specification.pdf', '2024-02-23 00:00:00.000000'),
+(2, 2, 'План проекта', '/docs/project1/plan.pdf', '2024-02-20 00:00:00.000000'),
+(3, 2, 'Архитектура системы', '/docs/project2/architecture.pdf', '2024-03-01 00:00:00.000000'),
+(4, 3, 'Тестовый план', '/docs/project3/test_plan.pdf', '2024-03-15 00:00:00.000000'),
+(5, 4, 'Пользовательская документация', '/docs/project4/user_guide.pdf', '2024-04-01 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -304,30 +249,33 @@ INSERT INTO `projectdocuments` (`DocumentID`, `ProjectID`, `Title`, `DocumentPat
 
 CREATE TABLE `projects` (
   `ProjectID` int NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `StartDate` date DEFAULT NULL,
-  `EndDate` date DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `StartDate` datetime(6) DEFAULT NULL,
+  `EndDate` datetime(6) DEFAULT NULL,
   `Budget` decimal(10,2) DEFAULT NULL,
   `ClientID` int DEFAULT NULL,
-  `ProjectManagerID` int DEFAULT NULL
+  `ManagerId` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `projects`
 --
 
-INSERT INTO `projects` (`ProjectID`, `Name`, `StartDate`, `EndDate`, `Budget`, `ClientID`, `ProjectManagerID`) VALUES
-(1, 'Project Alpha', '2024-02-01', '2024-02-21', '121000.00', 1, 2),
-(2, 'Project Beta', '2024-03-01', '2024-02-21', '192500.00', 2, 2),
-(3, 'Project Gamma', '2024-04-01', '2024-02-21', '253000.00', 3, 2),
-(4, 'Project Delta', '2024-05-01', '2024-11-01', '313500.00', 4, 2),
-(5, 'Project Epsilon', '2024-06-01', '2024-06-15', '374000.00', 5, 2),
-(6, 'New Project', '2024-01-01', '2024-12-31', '121000.00', 1, 1),
-(7, 'New Project', '2024-01-01', '2024-12-31', '121000.00', 2, 1),
-(8, 'New Project', '2024-01-01', '2024-12-31', '121000.00', 3, 1),
-(9, 'New Project', '2024-01-01', '2024-12-31', '121000.00', 4, 1),
-(10, 'New Project', '2024-01-01', '2024-12-31', '121000.00', 5, 1),
-(11, 'test11', NULL, NULL, '999999.00', NULL, NULL);
+INSERT INTO `projects` (`ProjectID`, `Name`, `StartDate`, `EndDate`, `Budget`, `ClientID`, `ManagerId`) VALUES
+(1, 'Project Alphaaa', '2024-04-29 00:00:00.000000', '2024-03-02 00:00:00.000000', '121000.00', 5, 8),
+(2, 'Project Beta', '2024-03-01 00:00:00.000000', '2024-02-22 00:00:00.000000', '192500.00', 2, 1),
+(3, 'Project Gamma', '2024-04-01 00:00:00.000000', '2024-02-21 00:00:00.000000', '253000.00', 5, 2),
+(4, 'Project Delta2', '2023-05-01 00:00:00.000000', '2024-11-01 00:00:00.000000', '313500.00', 4, 4),
+(5, 'Project Epsilon', '2024-06-01 00:00:00.000000', '2024-05-28 00:00:00.000000', '374000.00', 6, 3),
+(6, 'New Project', '2024-01-01 00:00:00.000000', '2024-12-31 00:00:00.000000', '121000.00', NULL, 2),
+(7, 'New Project', '2024-01-01 00:00:00.000000', '2024-12-31 00:00:00.000000', '121000.00', 2, 1),
+(8, 'New Project', '2024-01-01 00:00:00.000000', '2024-12-31 00:00:00.000000', '121000.00', 3, 3),
+(9, 'New Project', '2024-01-01 00:00:00.000000', '2024-12-31 00:00:00.000000', '121000.00', 4, 5),
+(10, 'New Project', '2024-01-09 00:00:00.000000', '2024-12-31 00:00:00.000000', '121000.00', 2, 8),
+(11, 'Tttest4', '2024-04-21 00:00:00.000000', '2024-04-10 00:00:00.000000', '22.00', 2, 1),
+(12, 'Example', '2024-04-11 00:00:00.000000', '2024-04-20 00:00:00.000000', '32433.00', 2, 4),
+(13, 'TEST2', '2024-04-25 00:00:00.000000', '2024-04-13 00:00:00.000000', '1111.00', 3, 1),
+(14, 'teStTt3', '2024-04-12 00:00:00.000000', '2024-04-21 00:00:00.000000', '24.00', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -361,10 +309,10 @@ INSERT INTO `projecttechnologies` (`ProjectTechnologyID`, `ProjectID`, `Technolo
 CREATE TABLE `tasks` (
   `TaskID` int NOT NULL,
   `ProjectID` int DEFAULT NULL,
-  `AssignedTo` int DEFAULT NULL,
-  `Description` text,
-  `StartDate` date DEFAULT NULL,
-  `EndDate` date DEFAULT NULL,
+  `EmployeeID` int DEFAULT NULL,
+  `Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `StartDate` datetime(6) DEFAULT NULL,
+  `EndDate` datetime(6) DEFAULT NULL,
   `StatusID` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -372,12 +320,12 @@ CREATE TABLE `tasks` (
 -- Дамп данных таблицы `tasks`
 --
 
-INSERT INTO `tasks` (`TaskID`, `ProjectID`, `AssignedTo`, `Description`, `StartDate`, `EndDate`, `StatusID`) VALUES
-(1, 1, 1, 'Database design', '2024-02-01', '2024-02-10', 3),
-(2, 1, 2, 'API development', '2024-02-11', '2024-02-20', 2),
-(3, 2, 1, 'Frontend setup', '2024-02-05', '2024-02-15', 2),
-(4, 2, 3, 'Backend logic', '2024-02-16', '2024-02-25', 1),
-(5, 3, 2, 'Testing', '2024-02-26', '2024-03-07', 1);
+INSERT INTO `tasks` (`TaskID`, `ProjectID`, `EmployeeID`, `Description`, `StartDate`, `EndDate`, `StatusID`) VALUES
+(1, 1, 1, 'Database design', '2024-02-01 00:00:00.000000', '2024-02-01 00:00:00.000000', 3),
+(2, 1, 2, 'API development', '2024-02-11 00:00:00.000000', '2024-02-20 00:00:00.000000', 3),
+(3, 2, 1, 'Frontend setup', '2024-02-05 00:00:00.000000', '2024-02-15 00:00:00.000000', 2),
+(4, 2, 3, 'Backend logic', '2024-02-16 00:00:00.000000', '2024-02-25 00:00:00.000000', 1),
+(5, 3, 2, 'Testing', '2024-02-26 00:00:00.000000', '2024-03-07 00:00:00.000000', 1);
 
 -- --------------------------------------------------------
 
@@ -387,7 +335,7 @@ INSERT INTO `tasks` (`TaskID`, `ProjectID`, `AssignedTo`, `Description`, `StartD
 
 CREATE TABLE `taskstatuses` (
   `StatusID` int NOT NULL,
-  `Name` varchar(50) NOT NULL
+  `Name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -409,8 +357,8 @@ INSERT INTO `taskstatuses` (`StatusID`, `Name`) VALUES
 
 CREATE TABLE `technologies` (
   `TechnologyID` int NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Description` text
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -435,7 +383,7 @@ CREATE TABLE `worklogs` (
   `EmployeeID` int DEFAULT NULL,
   `ProjectID` int DEFAULT NULL,
   `HoursWorked` int DEFAULT NULL,
-  `Date` date DEFAULT NULL
+  `Date` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -443,11 +391,11 @@ CREATE TABLE `worklogs` (
 --
 
 INSERT INTO `worklogs` (`WorkLogID`, `EmployeeID`, `ProjectID`, `HoursWorked`, `Date`) VALUES
-(1, 1, 1, 8, '2024-02-15'),
-(2, 2, 1, 6, '2024-02-16'),
-(3, 3, 2, 7, '2024-02-17'),
-(4, 4, 2, 8, '2024-02-18'),
-(5, 5, 3, 5, '2024-02-19');
+(1, 1, 1, 8, '2024-02-15 00:00:00.000000'),
+(2, 2, 1, 6, '2024-02-16 00:00:00.000000'),
+(3, 3, 2, 7, '2024-02-17 00:00:00.000000'),
+(4, 4, 2, 8, '2024-02-18 00:00:00.000000'),
+(5, 5, 3, 5, '2024-02-19 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -461,6 +409,20 @@ CREATE TABLE `__efmigrationshistory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- Дамп данных таблицы `__efmigrationshistory`
+--
+
+INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
+('20240421214138_UniversityProjectInit', '7.0.18'),
+('20240425004451_UpdatedContext', '7.0.18'),
+('20240425005257_DatabaseSetup_v2', '7.0.18'),
+('20240429012423_ProjectFixes', '7.0.18'),
+('20240430134806_ProjectFixes_v2', '7.0.18'),
+('20240430135008_ProjectFixes_v3', '7.0.18'),
+('20240430144358_DeletedAssignedToInTasks', '7.0.18'),
+('20240430144814_DeletedAssignedToInTasks_v2', '7.0.18');
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -469,8 +431,8 @@ CREATE TABLE `__efmigrationshistory` (
 --
 ALTER TABLE `clientfeedback`
   ADD PRIMARY KEY (`FeedbackID`),
-  ADD KEY `ProjectID` (`ProjectID`),
-  ADD KEY `ClientID` (`ClientID`);
+  ADD KEY `ClientID` (`ClientID`),
+  ADD KEY `ProjectID` (`ProjectID`);
 
 --
 -- Индексы таблицы `clients`
@@ -490,16 +452,16 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`EmployeeID`),
-  ADD KEY `PositionID` (`PositionID`),
-  ADD KEY `DepartmentID` (`DepartmentID`);
+  ADD KEY `DepartmentID` (`DepartmentID`),
+  ADD KEY `PositionID` (`PositionID`);
 
 --
 -- Индексы таблицы `employeetasks`
 --
 ALTER TABLE `employeetasks`
   ADD PRIMARY KEY (`EmployeeTaskID`),
-  ADD KEY `TaskID` (`TaskID`),
-  ADD KEY `employeetasks_ibfk_2` (`EmployeeID`);
+  ADD KEY `employeetasks_ibfk_2` (`EmployeeID`),
+  ADD KEY `TaskID` (`TaskID`);
 
 --
 -- Индексы таблицы `managers`
@@ -512,7 +474,7 @@ ALTER TABLE `managers`
 --
 ALTER TABLE `meetings`
   ADD PRIMARY KEY (`MeetingID`),
-  ADD KEY `ProjectID` (`ProjectID`);
+  ADD KEY `ProjectID1` (`ProjectID`);
 
 --
 -- Индексы таблицы `positions`
@@ -525,22 +487,22 @@ ALTER TABLE `positions`
 --
 ALTER TABLE `projectdocuments`
   ADD PRIMARY KEY (`DocumentID`),
-  ADD KEY `ProjectID` (`ProjectID`);
+  ADD KEY `ProjectID2` (`ProjectID`);
 
 --
 -- Индексы таблицы `projects`
 --
 ALTER TABLE `projects`
   ADD PRIMARY KEY (`ProjectID`),
-  ADD KEY `ClientID` (`ClientID`),
-  ADD KEY `ProjectManagerID` (`ProjectManagerID`);
+  ADD KEY `ClientID1` (`ClientID`),
+  ADD KEY `ManagerId` (`ManagerId`);
 
 --
 -- Индексы таблицы `projecttechnologies`
 --
 ALTER TABLE `projecttechnologies`
   ADD PRIMARY KEY (`ProjectTechnologyID`),
-  ADD KEY `ProjectID` (`ProjectID`),
+  ADD KEY `ProjectID3` (`ProjectID`),
   ADD KEY `TechnologyID` (`TechnologyID`);
 
 --
@@ -548,8 +510,8 @@ ALTER TABLE `projecttechnologies`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`TaskID`),
-  ADD KEY `ProjectID` (`ProjectID`),
-  ADD KEY `AssignedTo` (`AssignedTo`),
+  ADD KEY `IX_tasks_EmployeeID` (`EmployeeID`),
+  ADD KEY `ProjectID4` (`ProjectID`),
   ADD KEY `StatusID` (`StatusID`);
 
 --
@@ -570,7 +532,7 @@ ALTER TABLE `technologies`
 ALTER TABLE `worklogs`
   ADD PRIMARY KEY (`WorkLogID`),
   ADD KEY `EmployeeID` (`EmployeeID`),
-  ADD KEY `ProjectID` (`ProjectID`);
+  ADD KEY `ProjectID5` (`ProjectID`);
 
 --
 -- Индексы таблицы `__efmigrationshistory`
@@ -616,13 +578,13 @@ ALTER TABLE `employeetasks`
 -- AUTO_INCREMENT для таблицы `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `ManagerID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ManagerID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `MeetingID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `MeetingID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `positions`
@@ -640,7 +602,7 @@ ALTER TABLE `projectdocuments`
 -- AUTO_INCREMENT для таблицы `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `ProjectID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ProjectID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `projecttechnologies`
@@ -652,7 +614,7 @@ ALTER TABLE `projecttechnologies`
 -- AUTO_INCREMENT для таблицы `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `TaskID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `TaskID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `taskstatuses`
@@ -680,69 +642,69 @@ ALTER TABLE `worklogs`
 -- Ограничения внешнего ключа таблицы `clientfeedback`
 --
 ALTER TABLE `clientfeedback`
-  ADD CONSTRAINT `clientfeedback_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`),
-  ADD CONSTRAINT `clientfeedback_ibfk_2` FOREIGN KEY (`ClientID`) REFERENCES `clients` (`ClientID`);
+  ADD CONSTRAINT `clientfeedback_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `clientfeedback_ibfk_2` FOREIGN KEY (`ClientID`) REFERENCES `clients` (`ClientID`) ON DELETE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `departments`
 --
 ALTER TABLE `departments`
-  ADD CONSTRAINT `fk_departments_managers` FOREIGN KEY (`ManagerID`) REFERENCES `managers` (`ManagerID`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_departments_managers` FOREIGN KEY (`ManagerID`) REFERENCES `managers` (`ManagerID`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `employees`
 --
 ALTER TABLE `employees`
-  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`PositionID`) REFERENCES `positions` (`PositionID`),
-  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`DepartmentID`) REFERENCES `departments` (`DepartmentID`);
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`PositionID`) REFERENCES `positions` (`PositionID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`DepartmentID`) REFERENCES `departments` (`DepartmentID`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `employeetasks`
 --
 ALTER TABLE `employeetasks`
-  ADD CONSTRAINT `employeetasks_ibfk_1` FOREIGN KEY (`TaskID`) REFERENCES `tasks` (`TaskID`),
+  ADD CONSTRAINT `employeetasks_ibfk_1` FOREIGN KEY (`TaskID`) REFERENCES `tasks` (`TaskID`) ON DELETE CASCADE,
   ADD CONSTRAINT `employeetasks_ibfk_2` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`) ON DELETE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `meetings`
 --
 ALTER TABLE `meetings`
-  ADD CONSTRAINT `meetings_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`);
+  ADD CONSTRAINT `meetings_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `projectdocuments`
 --
 ALTER TABLE `projectdocuments`
-  ADD CONSTRAINT `projectdocuments_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`);
+  ADD CONSTRAINT `projectdocuments_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`) ON DELETE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `projects`
 --
 ALTER TABLE `projects`
-  ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`ClientID`) REFERENCES `clients` (`ClientID`),
-  ADD CONSTRAINT `projects_ibfk_2` FOREIGN KEY (`ProjectManagerID`) REFERENCES `employees` (`EmployeeID`);
+  ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`ClientID`) REFERENCES `clients` (`ClientID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `projects_ibfk_2` FOREIGN KEY (`ManagerId`) REFERENCES `managers` (`ManagerID`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `projecttechnologies`
 --
 ALTER TABLE `projecttechnologies`
-  ADD CONSTRAINT `projecttechnologies_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`),
-  ADD CONSTRAINT `projecttechnologies_ibfk_2` FOREIGN KEY (`TechnologyID`) REFERENCES `technologies` (`TechnologyID`);
+  ADD CONSTRAINT `projecttechnologies_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `projecttechnologies_ibfk_2` FOREIGN KEY (`TechnologyID`) REFERENCES `technologies` (`TechnologyID`) ON DELETE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `tasks`
 --
 ALTER TABLE `tasks`
-  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`),
-  ADD CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`AssignedTo`) REFERENCES `employees` (`EmployeeID`),
-  ADD CONSTRAINT `tasks_ibfk_3` FOREIGN KEY (`StatusID`) REFERENCES `taskstatuses` (`StatusID`);
+  ADD CONSTRAINT `FK_tasks_employees_EmployeeID` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
+  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tasks_ibfk_3` FOREIGN KEY (`StatusID`) REFERENCES `taskstatuses` (`StatusID`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `worklogs`
 --
 ALTER TABLE `worklogs`
-  ADD CONSTRAINT `worklogs_ibfk_1` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
-  ADD CONSTRAINT `worklogs_ibfk_2` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`);
+  ADD CONSTRAINT `worklogs_ibfk_1` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `worklogs_ibfk_2` FOREIGN KEY (`ProjectID`) REFERENCES `projects` (`ProjectID`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

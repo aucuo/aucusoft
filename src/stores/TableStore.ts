@@ -21,7 +21,7 @@ class TableStore {
     pagesCount: number = 1;
     searchQuery: string = '';
     availableFilters: string[] = [];
-    isLoading: boolean = false;
+    isLoading: boolean = true;
     url?: string = undefined;
     urlParams?: string = '';
 

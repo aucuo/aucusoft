@@ -1,4 +1,5 @@
 import './aside.scss'
+import {appStore} from "@/stores/AppStore.ts"
 interface AsideProps {
     activePage: string;
     onMenuItemClick(newContent:string): void;
@@ -44,7 +45,7 @@ export function Aside({activePage, onMenuItemClick} : AsideProps) {
                 </div>
                 <div className="sidebar__bottom">
                     <ul className="sidebar__nav">
-                        <li className="sidebar__link">
+                        <li className="sidebar__link" onClick={appStore.toggleTheme}>
                             <svg className="sidebar__icon" width={24} height={24}>
                                 <use xlinkHref='public/icons/sprites.svg#mask'></use>
                             </svg>
