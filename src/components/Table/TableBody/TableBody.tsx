@@ -1,7 +1,7 @@
 // components/TableBody.tsx
 import {observer} from "mobx-react";
 import {TableInput} from "@components/Table/TableInput/TableInput";
-import {useTableStore} from "@components/Table/TableStoreContext.tsx";
+import {useTableStore} from "@/stores/TableStoreContext.tsx";
 import './table-body.scss'
 import {TableSelect} from "@components/Table/TableSelect/TableSelect.tsx";
 

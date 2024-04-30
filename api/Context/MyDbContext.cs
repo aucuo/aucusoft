@@ -282,8 +282,6 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("tasks");
 
-            entity.HasIndex(e => e.AssignedTo, "AssignedTo");
-
             entity.HasIndex(e => e.ProjectId, "ProjectID");
 
             entity.HasIndex(e => e.StatusId, "StatusID");
@@ -292,11 +290,6 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.Description).HasColumnType("text");
             entity.Property(e => e.ProjectId).HasColumnName("ProjectID");
             entity.Property(e => e.StatusId).HasColumnName("StatusID");
-
-            entity.HasOne(d => d.AssignedToNavigation).WithMany(p => p.Tasks)
-                .HasForeignKey(d => d.AssignedTo)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("tasks_ibfk_2");
 
             entity.HasOne(d => d.Project).WithMany(p => p.Tasks)
                 .HasForeignKey(d => d.ProjectId)

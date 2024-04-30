@@ -23,8 +23,6 @@ public partial class Employee
 
     public virtual Position? Position { get; set; }
 
-    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
-
     public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
 
     public virtual ICollection<Worklog> Worklogs { get; set; } = new List<Worklog>();

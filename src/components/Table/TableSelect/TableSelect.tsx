@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './table-select.scss';
-import {useTableStore} from "@components/Table/TableStoreContext.tsx";
+import {useTableStore} from "@/stores/TableStoreContext.tsx";
 
 interface TableSelectProps {
     index: number;

@@ -67,8 +67,8 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ClientID");
 
-                    b.Property<DateOnly?>("Date")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int")
@@ -156,8 +156,8 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("EmployeeTaskID");
 
-                    b.Property<DateOnly?>("Date")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int")
@@ -211,8 +211,8 @@ namespace api.Migrations
                     b.Property<string>("Agenda")
                         .HasColumnType("text");
 
-                    b.Property<DateOnly?>("MeetingDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("MeetingDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int")
@@ -263,8 +263,8 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ClientID");
 
-                    b.Property<DateOnly?>("EndDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("ManagerId")
                         .HasColumnType("int")
@@ -275,8 +275,8 @@ namespace api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<DateOnly?>("StartDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("ID")
                         .HasName("PRIMARY");
@@ -296,8 +296,8 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("DocumentID");
 
-                    b.Property<DateOnly?>("CreationDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("DocumentPath")
                         .HasMaxLength(255)
@@ -354,21 +354,21 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TaskID");
 
-                    b.Property<int?>("AssignedTo")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<DateOnly?>("EndDate")
-                        .HasColumnType("date");
+                    b.Property<int?>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int")
                         .HasColumnName("ProjectID");
 
-                    b.Property<DateOnly?>("StartDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("StatusId")
                         .HasColumnType("int")
@@ -377,7 +377,7 @@ namespace api.Migrations
                     b.HasKey("ID")
                         .HasName("PRIMARY");
 
-                    b.HasIndex(new[] { "AssignedTo" }, "AssignedTo");
+                    b.HasIndex("EmployeeID");
 
                     b.HasIndex(new[] { "ProjectId" }, "ProjectID")
                         .HasDatabaseName("ProjectID4");
@@ -433,8 +433,8 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("WorkLogID");
 
-                    b.Property<DateOnly?>("Date")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int")
@@ -545,7 +545,7 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("projects_ibfk_1");
 
-                    b.HasOne("api.Models.Employee", "ProjectManager")
+                    b.HasOne("api.Models.Manager", "ProjectManager")
                         .WithMany("Projects")
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.SetNull)
@@ -588,11 +588,9 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Task", b =>
                 {
-                    b.HasOne("api.Models.Employee", "AssignedToNavigation")
+                    b.HasOne("api.Models.Employee", null)
                         .WithMany("Tasks")
-                        .HasForeignKey("AssignedTo")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("tasks_ibfk_2");
+                        .HasForeignKey("EmployeeID");
 
                     b.HasOne("api.Models.Project", "Project")
                         .WithMany("Tasks")
@@ -605,8 +603,6 @@ namespace api.Migrations
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("tasks_ibfk_3");
-
-                    b.Navigation("AssignedToNavigation");
 
                     b.Navigation("Project");
 
@@ -648,8 +644,6 @@ namespace api.Migrations
                 {
                     b.Navigation("Employeetasks");
 
-                    b.Navigation("Projects");
-
                     b.Navigation("Tasks");
 
                     b.Navigation("Worklogs");
@@ -658,6 +652,8 @@ namespace api.Migrations
             modelBuilder.Entity("api.Models.Manager", b =>
                 {
                     b.Navigation("Departments");
+
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("api.Models.Position", b =>

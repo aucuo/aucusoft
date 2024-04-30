@@ -20,13 +20,12 @@ namespace api.Controllers
             {
                 ID = d.ID,
                 d.Name,
-                Manager = d.Manager.Name,
+                ManagerFK = d.Manager != null ? d.ManagerId : null,
             };
         protected override async Task<object> GetAdditionalDataAsync()
         {
-            var clients = await _context.Clients.Select(c => new { c.ID, c.Name }).ToListAsync();
-            var managers = await _context.Managers.Select(m => new { m.ID, m.Name }).ToListAsync();
-            return new { clients, managers };
+            var ManagerFK = await _context.Managers.Select(m => new { m.ID, m.Name }).ToListAsync();
+            return new { ManagerFK };
         }
     }
 }

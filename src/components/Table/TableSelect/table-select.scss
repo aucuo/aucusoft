@@ -1,6 +1,7 @@
 .table-select {
   box-sizing: border-box;
   width: 100%;
+  min-width: 120px;
   padding: 0 10px;
   height: 20px;
   border: none;
@@ -10,8 +11,8 @@
 
   &:focus {
     z-index: 999;
-    max-width: 200px !important;
-    width: fit-content !important;
+    width: calc(100% - 5px) !important;
+    min-width: 125px;
     position: absolute;
     top: 0;
     left: 0;

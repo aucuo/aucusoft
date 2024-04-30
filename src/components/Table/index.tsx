@@ -5,7 +5,7 @@ import {Search} from "@components/Table/Search/Search";
 import {Navigation} from "@components/Table/Navigation/Navigation";
 import {TableHead} from "@components/Table/TableHead/TableHead";
 import {TableBody} from "@components/Table/TableBody/TableBody";
-import {TableStoreProvider} from './TableStoreContext.tsx'; // Импорт контекста, если его нет, создайте его
+import {TableStoreProvider} from '@/stores/TableStoreContext.tsx';
 import './table.scss';
 import {useEffect, useMemo} from "react";
 import {Spinner} from "react-bootstrap";
@@ -35,7 +35,7 @@ export const Table = observer(({tableName, search = true, navigation = true}: {
                         <svg width={24} height={24}>
                             <use xlinkHref='public/icons/sprites.svg#sad'></use>
                         </svg>
-                        No data available. Try to reload
+                        No data available.
                         <div className="frame__empty-url">{tableStore.url}</div>
                     </div>
                     {navigation && <Navigation/>}

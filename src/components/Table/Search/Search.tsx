@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import { observer } from "mobx-react";
 import {Dropdown} from "react-bootstrap";
 import './search.scss';
-import {useTableStore} from "@components/Table/TableStoreContext.tsx";
+import {useTableStore} from "@/stores/TableStoreContext.tsx";
 import {debounce} from "lodash";
 
 export const Search = observer(() => {

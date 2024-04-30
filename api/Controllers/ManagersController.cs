@@ -21,13 +21,10 @@ namespace api.Controllers
                 ID = m.ID,
                 m.Name,
                 m.Position,
-                Department = m.Departments.Select(d => d.Name),
             };
-        protected override async Task<object> GetAdditionalDataAsync()
+        protected override async Task<object?> GetAdditionalDataAsync()
         {
-            var clients = await _context.Clients.Select(c => new { c.ID, c.Name }).ToListAsync();
-            var managers = await _context.Managers.Select(m => new { m.ID, m.Name }).ToListAsync();
-            return new { clients, managers };
+            return null;
         }
     }
 }

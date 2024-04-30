@@ -9,8 +9,6 @@ public partial class Task
 
     public int? ProjectId { get; set; }
 
-    public int? AssignedTo { get; set; }
-
     public string? Description { get; set; }
 
     public DateTime? StartDate { get; set; }
@@ -18,8 +16,6 @@ public partial class Task
     public DateTime? EndDate { get; set; }
 
     public int? StatusId { get; set; }
-
-    public virtual Employee? AssignedToNavigation { get; set; }
 
     public virtual ICollection<Employeetask> Employeetasks { get; set; } = new List<Employeetask>();
 

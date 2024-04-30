@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import './navigation.scss';
-import {useTableStore} from "@components/Table/TableStoreContext.tsx";
+import {useTableStore} from "@/stores/TableStoreContext.tsx";
 
 export const Navigation = observer(() => {
     const TableStore = useTableStore();

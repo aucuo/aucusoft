@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import {toastStore} from "@/stores/ToastStore.ts";
 
 interface DataItem {
     [key: string]: any;
@@ -42,7 +43,6 @@ class TableStore {
     }
 
     // Table search
-    // todo сделать в бэке возврат значение в items, добавление, удаление, редактирование
     async setSearchQuery(query: string) {
         console.log(query)
         this.isLoading = true;
@@ -89,9 +89,6 @@ class TableStore {
         params.set('sortDirection', 'asc');
 
         const url = `${this.url}?${params.toString()}`;
-
-        // console.log([url]);  // Для отладки
-
         this.isLoading = true;
         try {
             const response = await fetch(url);
@@ -109,8 +106,7 @@ class TableStore {
             });
         } catch (error) {
             runInAction(() => {
-                //todo сделать показ попапа на ошибки
-                console.error("Failed to fetch data:", error);
+                toastStore.setShow(`Failed to fetch data: ${error}`, "error");
                 this.isLoading = false;
             });
         }
@@ -120,14 +116,13 @@ class TableStore {
         const item = this.data[index];
         if (item) {
             item[key] = value;
-            console.log(`Updated ${key} to ${value} for item at id ${id}`);
             await this.submitData(id);
         }
     }
     async submitData(id: number) {
         const item = this.data.find(item => item.id === id);
         if (!item) {
-            console.error("Item with the specified ID not found.");
+            toastStore.setShow("Item with the specified ID not found.", "warning");
             return;
         }
 
@@ -146,11 +141,10 @@ class TableStore {
         });
 
         const url = `${baseUrl}/${id}?${params.toString()}`;
-        console.log(`Submitting data to: ${url}`);
 
         try {
             const response = await fetch(url, {
-                method: 'PUT', // предполагая, что используется метод PUT для обновления
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
@@ -159,9 +153,10 @@ class TableStore {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            console.log("Data successfully updated");
+            toastStore.setShow("Data successfully updated", "default");
             await this.loadData();
         } catch (error) {
+            toastStore.setShow(`Failed to submit data: ${error}`, "warning");
             console.error("Failed to submit data:", error);
         }
     }

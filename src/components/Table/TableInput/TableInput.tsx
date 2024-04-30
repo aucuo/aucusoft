@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './table-input.scss';
-import {useTableStore} from "@components/Table/TableStoreContext.tsx";
+import {useTableStore} from "@/stores/TableStoreContext.tsx";
 
 interface TableInputProps {
     index: number;
@@ -33,7 +33,7 @@ export const TableInput = ({ index, keyField, value, type = 'text', id}: TableIn
         setInputValue(event.target.value);
     };
 
-    const handleBlur = () => {
+    const handleBlur = async () => {
         setIsFocused(false);
         setInputValue(value);
     };
@@ -45,7 +45,6 @@ export const TableInput = ({ index, keyField, value, type = 'text', id}: TableIn
         }
         if (event.key === 'Escape') {
             (event.target as HTMLInputElement).blur(); // Убираем фокус с input
-            //todo разобраться с заменой значения
             setInputValue(value);
         }
     };

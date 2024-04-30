@@ -12,4 +12,6 @@ public partial class Manager
     public string? Position { get; set; }
 
     public virtual ICollection<Department> Departments { get; set; } = new List<Department>();
+
+    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
 }

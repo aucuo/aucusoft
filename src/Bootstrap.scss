@@ -13,22 +13,6 @@ $enable-caret: false;
   --bs-gutter-y: 20px;
 }
 
-.toast {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  position: fixed;
-  bottom: 20px;
-  right: -20px;
-  transform: translateX(-50%);
-  padding: 15px;
-  min-width: 200px;
-  background-color: var(--blue-transparent);
-  border-radius: 20px;
-  border: 1px solid var(--gray5);
-}
-
 .dropdown {
   &-menu {
     --bs-dropdown-border-radius: 10px;

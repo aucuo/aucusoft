@@ -6,7 +6,7 @@
       "@components/*": ["src/components/*"],
       "@public/*": ["public/*"],
       "@icons/*": ["public/icons*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
     },
 
     "target": "ES2020",

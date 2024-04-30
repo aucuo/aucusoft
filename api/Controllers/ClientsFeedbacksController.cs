@@ -20,15 +20,14 @@ namespace api.Controllers
             cf => new
             {
                 ID = cf.ID,
-                Project = cf.Project.Name,
+                ProjectFK = cf.Project != null ? cf.ProjectId : null,
                 cf.Text,
                 cf.Date,
             };
         protected override async Task<object> GetAdditionalDataAsync()
         {
-            var clients = await _context.Clients.Select(c => new { c.ID, c.Name }).ToListAsync();
-            var managers = await _context.Managers.Select(m => new { m.ID, m.Name }).ToListAsync();
-            return new { clients, managers };
+            var ProjectFK = await _context.Projects.Select(p => new { p.ID, p.Name }).ToListAsync();
+            return new { ProjectFK };
         }
     }
 }

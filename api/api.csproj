@@ -8,17 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\EmployeeTasksController.cs" />
-    <Compile Remove="Controllers\HomeController.cs" />
-    <Compile Remove="Controllers\ProjectsDocumentsController.cs" />
-    <Compile Remove="Controllers\ProjectsTechnologiesController.cs" />
-    <Compile Remove="Controllers\TasksController.cs" />
-    <Compile Remove="Controllers\TaskstatusesController.cs" />
-    <Compile Remove="Controllers\TechnologiesController.cs" />
-    <Compile Remove="Controllers\WorklogsController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="desktop-icon.ico" />
   </ItemGroup>
 

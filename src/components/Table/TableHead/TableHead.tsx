@@ -1,7 +1,7 @@
 // components/TableHead.tsx
 import { observer } from "mobx-react";
 import './table-head.scss'
-import {useTableStore} from "@components/Table/TableStoreContext.tsx";
+import {useTableStore} from "@/stores/TableStoreContext.tsx";
 export const TableHead = observer(() => {
     const TableStore = useTableStore();
     return (
