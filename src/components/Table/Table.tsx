@@ -32,25 +32,16 @@ export const Table = observer(({tableName, search = true, navigation = true}: {
                 <Frame name={tableName} refreshTable={refreshData}>
                     {search && <Search/>}
                     <div className="frame__empty">
+                        {tableStore.isLoading &&
+                            <div className="table--loading">
+                                <Spinner animation="border" role="status"></Spinner>
+                            </div>
+                        }
                         <svg width={24} height={24}>
                             <use xlinkHref='public/icons/sprites.svg#sad'></use>
                         </svg>
                         No data available.
                         <div className="frame__empty-url">{tableStore.url}</div>
-                    </div>
-                    {navigation && <Navigation/>}
-                </Frame>
-            </TableStoreProvider>
-        );
-    }
-
-    if (tableStore.isLoading) {
-        return (
-            <TableStoreProvider tableStore={tableStore}>
-                <Frame name={tableName} refreshTable={refreshData}>
-                    {search && <Search/>}
-                    <div className="table table--loading">
-                        <Spinner animation="border" role="status"></Spinner>
                     </div>
                     {navigation && <Navigation/>}
                 </Frame>
@@ -65,6 +56,11 @@ export const Table = observer(({tableName, search = true, navigation = true}: {
                 <div className="table">
                     <table className="table" cellSpacing={0}>
                         <TableHead/>
+                        {tableStore.isLoading &&
+                            <div className="table--loading">
+                                <Spinner animation="border" role="status"></Spinner>
+                            </div>
+                        }
                         <TableBody/>
                     </table>
                 </div>

@@ -46,7 +46,7 @@ export const Login = observer(() => {
                 </form>
                 <div className="login__additional">
                     <button className="login__button--additional button" type="button"
-                            onClick={() => window.open("https://github.com/aucuo", '_blank')}>
+                            onClick={() => window.open("https://github.com/aucuo/aucusoft", '_blank')}>
                         <svg width={24} height={24}>
                             <use xlinkHref={`public/icons/sprites.svg#github`}></use>
                         </svg>
