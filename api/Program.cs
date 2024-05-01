@@ -94,5 +94,3 @@ Console.Write("\n[author]: ");
 Console.ForegroundColor = ConsoleColor.Gray;
 Console.Write("Prod by Jahor Šykaviec. All rights are not reserved. Free for use. gOoD lUcK =)\n\n");
 app.Run();
-
-

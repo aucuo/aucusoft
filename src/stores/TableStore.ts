@@ -1,9 +1,10 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import {toastStore} from "@/stores/ToastStore.ts";
 import authStore from "@/stores/AuthStore.ts";
 
 interface DataItem {
     [key: string]: any;
+
     additional?: {
         [key: string]: Option,
     }
@@ -33,7 +34,7 @@ class TableStore {
 
     constructor(tableName: string) {
         makeAutoObservable(this);
-        this.url = `https://localhost:7030/aucusoft/${tableName}`;
+        this.url = `https://localhost:5001/aucusoft/${tableName}`;
     }
 
     // URL
@@ -42,6 +43,7 @@ class TableStore {
         params.set(key, value);  // Обновляет или добавляет параметр
         this.urlParams = params.toString();
     }
+
     removeUrlParam(key: string) {
         let params = new URLSearchParams(this.urlParams);
         params.delete(key);  // Удаляет параметр
@@ -63,11 +65,13 @@ class TableStore {
         this.currentPage = Math.min(Math.max(page, 1), this.pagesCount);
         await this.loadData();
     }
+
     async nextPage() {
         if (this.currentPage < this.pagesCount) {
             await this.setCurrentPage(this.currentPage + 1);
         }
     }
+
     async previousPage() {
         if (this.currentPage > 1) {
             await this.setCurrentPage(this.currentPage - 1);
@@ -78,10 +82,12 @@ class TableStore {
     toggleRow(index: number) {
         this.selectedRows[index].selected = !this.selectedRows[index].selected;
     }
+
     toggleAllRows() {
         const allSelected = this.selectedRows.every(row => row.selected);
         this.selectedRows.forEach(row => row.selected = !allSelected);
     }
+
     get allSelected() {
         return this.selectedRows.every(row => row.selected);
     }
@@ -103,16 +109,16 @@ class TableStore {
         };
 
         try {
-            const response = await fetch(url, { headers: headers });
+            const response = await fetch(url, {headers: headers});
 
             const jsonData = await response.json();
             runInAction(() => {
-                this.data = jsonData.data.filter((item:any) =>
+                this.data = jsonData.data.filter((item: any) =>
                     Object.values(item).some(v => v !== null && !(Array.isArray(v) && v.length === 0))
                 );
                 this.additionalData = jsonData.additional;
                 this.pagesCount = jsonData.totalPages;
-                this.selectedRows = this.data.map(item => ({ id: item.id, selected: false }));
+                this.selectedRows = this.data.map(item => ({id: item.id, selected: false}));
                 if (!this.availableFilters.length) {
                     this.availableFilters = Object.keys(this.data[0] || {});
                 }
@@ -126,14 +132,15 @@ class TableStore {
             });
         }
     }
-    async deleteData(itemId:number) {
+
+    async deleteData(itemId: number) {
         const token = localStorage.getItem('token');
         const headers = {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         };
 
-        const url = `https://localhost:7030/aucusoft/Projects/${itemId}`;
+        const url = `https://localhost:5001/aucusoft/Projects/${itemId}`;
 
         try {
             const response = await fetch(url, {
@@ -143,7 +150,6 @@ class TableStore {
 
             if (response.ok) {
                 runInAction(() => {
-                    // Обновляем данные в UI, например, удаляем строку из списка
                     toastStore.setShow('Project deleted successfully', "default");
                     this.loadData();
                 });
@@ -160,6 +166,8 @@ class TableStore {
         }
     }
 
+    //todo filters
+
     // Update API
     async updateItem(index: number, key: string, value: any, id: number) {
         const item = this.data[index];
@@ -168,14 +176,54 @@ class TableStore {
             await this.submitData(id);
         }
     }
-    async submitData(id: number) {
+
+    async addData(item: DataItem) {
+        this.isLoading = true;
+        const baseUrl = this.url || "https://localhost:5001/aucusoft/Projects";
+        const params = new URLSearchParams();
+
+        Object.keys(item).forEach((key) => {
+            console.log(`${key}: ${item[key]}`)
+            if (key.endsWith('FK')) {
+                const newKey = key.replace('FK', 'ID');
+                params.append(newKey, item[key]);
+            } else if (key.endsWith('Date')) {
+                params.append(key, item[key]);
+            } else if (key != 'id') {
+                params.append(key, item[key]);
+            }
+        });
+
+        const url = `${baseUrl}?${params.toString()}`;
+        const token = localStorage.getItem('token');
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: params
+            });
+            if (!response.ok) {
+                toastStore.setShow(`HTTP error! status: ${response.status}`, "error");
+            }
+            toastStore.setShow("Data successfully added", "default");
+        } catch (error) {
+            toastStore.setShow(`Failed to add data: ${error}`, "warning");
+            console.error("Failed to submit data:", error);
+        }
+        this.isLoading = false;
+    }
+
+    async submitData(id: number | null ) {
         const item = this.data.find(item => item.id === id);
         if (!item) {
             toastStore.setShow("Item with the specified ID not found.", "warning");
             return;
         }
 
-        const baseUrl = this.url || "https://localhost:7030/aucusoft/Projects";
+        const baseUrl = this.url || "https://localhost:5001/aucusoft/Projects";
         const params = new URLSearchParams();
 
         Object.keys(item).forEach(key => {

@@ -56,7 +56,7 @@ export const TableBody = observer(() => {
                 ))}
             </tr>
         ))}
-        {Array(5 - TableStore.data.length).fill(null).map((_, i) => (
+        {Array(Math.max(0, 5 - TableStore.data.length)).fill(null).map((_, i) => (
             <tr key={`empty-${i}`} className="table__row table__row--empty"></tr>
         ))}
         </tbody>

@@ -23,8 +23,26 @@ export const Search = observer(() => {
         debouncedSearch(event.target.value);
     };
 
-    const handleAdd = () => {
-        console.log('Add');
+    const handleAdd = async () => {
+        const newItem = {
+            id: Math.random(),
+            ...Object.keys(TableStore.data[0] || {}).reduce((acc : any, key) => {
+                if (key.endsWith('Date')) {
+                    acc[key] = new Date().toISOString().split('T')[0];
+                } else if (key.endsWith('FK')) {
+                    acc[key] = (TableStore.additionalData[key] && TableStore.additionalData[key][0]?.id) || "N/A";
+                } else {
+                    acc[key] = "N/A";
+                }
+                return acc;
+            }, {})
+        };
+
+        if (TableStore.data.length > 4) TableStore.data.pop();
+        TableStore.data.unshift(newItem);
+        TableStore.selectedRows.pop();
+        TableStore.selectedRows.unshift({ id: newItem.id, selected: false });
+        await TableStore.addData(newItem);
     }
 
     const handleDelete = () => {
@@ -33,8 +51,8 @@ export const Search = observer(() => {
 
     const confirmDelete = () => {
         const selectedIds = TableStore.selectedRows
-            .filter(row => row.selected) // Фильтрация только выбранных элементов
-            .map(row => row.id);         // Извлечение ID из выбранных элементов
+            .filter(row => row.selected)
+            .map(row => row.id);
 
         selectedIds.forEach(id => TableStore.deleteData(id))
 
@@ -42,8 +60,6 @@ export const Search = observer(() => {
     };
 
     const handleClose = () => setShowModal(false);
-
-    //todo insert & delete
 
     return (
         <div className="search">
