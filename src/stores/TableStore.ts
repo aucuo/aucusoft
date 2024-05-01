@@ -16,7 +16,7 @@ interface Option {
 
 class TableStore {
     data: DataItem[] = [];
-    additionalData: { [key: string]: Option[] } = {};  // Сюда сохраняем данные для select
+    additionalData: { [key: string]: Option[] } = {};
     selectedRows: boolean[] = [];
     currentPage: number = 1;
     pagesCount: number = 1;
@@ -83,7 +83,6 @@ class TableStore {
 
     // API
     async loadData() {
-        // Добавление стандартных параметров запроса
         let params = new URLSearchParams(this.urlParams);
         params.set('pageIndex', this.currentPage.toString());
         params.set('pageSize', '5');
@@ -92,10 +91,7 @@ class TableStore {
         const url = `${this.url}?${params.toString()}`;
         this.isLoading = true;
 
-        // Получение токена из localStorage или AuthStore
-        const token = localStorage.getItem('token'); // или AuthStore.token, если вы используете MobX Store для хранения токена
-
-        // Настройка заголовков запроса с токеном JWT
+        const token = localStorage.getItem('token');
         const headers = {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -108,7 +104,7 @@ class TableStore {
             runInAction(() => {
                 this.data = jsonData.data.filter((item: DataItem) => Object.values(item).some(v => v !== null && !(Array.isArray(v) && v.length === 0)));
                 this.additionalData = jsonData.additional;
-                this.pagesCount = jsonData.totalPages;
+                this.pagesCount = jsonData["totalPages"];
                 this.selectedRows = new Array(this.data.length).fill(false);
                 if (!this.availableFilters.length) {
                     this.availableFilters = Object.keys(this.data[0] || {});
@@ -165,7 +161,7 @@ class TableStore {
                 body: params
             });
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                toastStore.setShow(`HTTP error! status: ${response.status}`, "error");
             }
             toastStore.setShow("Data successfully updated", "default");
             await this.loadData();

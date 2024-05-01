@@ -2,6 +2,7 @@
 using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -27,6 +28,8 @@ namespace api.Controllers
         public IActionResult Register(UserDto userDto)
         {
             var user = new User { Username = userDto.Username };
+            if (userDto.Password == null) return NotFound();
+
             user.SetPassword(userDto.Password);
             _context.Users.Add(user);
             _context.SaveChanges();
@@ -43,6 +46,7 @@ namespace api.Controllers
         [AllowAnonymous]
         public IActionResult Login(UserDto userDto)
         {
+            if (userDto.Password == null) return NotFound();
             var user = _context.Users.SingleOrDefault(u => u.Username == userDto.Username);
             if (user == null || !user.CheckPassword(userDto.Password))
                 return Unauthorized("Invalid data");
@@ -51,9 +55,11 @@ namespace api.Controllers
             return Ok(new { Token = token });
         }
 
-        private string GenerateJwtToken(User user)
+        private string? GenerateJwtToken(User user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var key = _configuration["Jwt:Key"];
+            if (user.Username == null || key == null) return null;
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace api.Controllers
 {
@@ -16,8 +17,8 @@ namespace api.Controllers
         where TEntity : class
         where TContext : DbContext
     {
-        protected readonly TContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly TContext? _context;
+        private readonly DbSet<TEntity>? _dbSet;
 
         public BaseController(TContext context)
         {
@@ -35,16 +36,19 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetItem(int id)
         {
-            var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
+            var keyName = _context?.Model.FindEntityType(typeof(TEntity))?.FindPrimaryKey()?.Properties
                           .Select(x => x.Name).Single();
 
-            IQueryable<TEntity> query = _dbSet;
+            if (keyName == null) return Ok();
+
+            IQueryable<TEntity>? query = _dbSet;
 
             // Применение связей
             foreach (var include in Includes)
             {
-                query = query.Include(include);
+                query = query?.Include(include);
             }
+            if (query == null) return Ok();
 
             // Выполнение проекции
             var result = await query.Select(Projection)
@@ -62,11 +66,11 @@ namespace api.Controllers
         public async Task<ActionResult<object>> GetAll(
             [FromQuery] int pageIndex = 1,
             [FromQuery] int pageSize = 1,
-            [FromQuery] string sortBy = null,
+            [FromQuery] string? sortBy = null,
             [FromQuery] string sortDirection = "asc",
-            [FromQuery] string searchQuery = null,
-            [FromQuery] string fieldName = null,
-            [FromQuery] string fieldValue = null)
+            [FromQuery] string? searchQuery = null,
+            [FromQuery] string? fieldName = null,
+            [FromQuery] string? fieldValue = null)
         {
             IQueryable<TEntity> ApplySorting(IQueryable<TEntity> query, string sortBy, string sortDirection)
             {
@@ -92,12 +96,13 @@ namespace api.Controllers
                     var parameterExp = Expression.Parameter(typeof(TEntity), "type");
                     var propertyExp = Expression.Property(parameterExp, prop.Name);
                     var method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                    if (method == null) return null;
                     var someValue = Expression.Constant(searchQuery, typeof(string));
                     var containsMethodExp = Expression.Call(propertyExp, method, someValue);
                     return Expression.Lambda<Func<TEntity, bool>>(containsMethodExp, parameterExp);
                 });
 
-                var combinedExpression = searchPredicates.Aggregate((Expression<Func<TEntity, bool>>)null, (current, predicate) =>
+                var combinedExpression = searchPredicates.Aggregate((Expression<Func<TEntity, bool>>?)null, (current, predicate) =>
                     current == null ? predicate : Expression.Lambda<Func<TEntity, bool>>(Expression.OrElse(current.Body, Expression.Invoke(predicate, current.Parameters.Single())), current.Parameters));
 
                 if (combinedExpression != null)
@@ -115,7 +120,9 @@ namespace api.Controllers
 
                     if (propertyType == typeof(string))
                     {
-                        MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                        MethodInfo? method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                        if (method == null) return query;
+
                         var someValue = Expression.Constant(fieldValue, typeof(string));
                         var containsMethodExp = Expression.Call(propertyExp, method, someValue);
 
@@ -125,7 +132,8 @@ namespace api.Controllers
                     else if (propertyType == typeof(Nullable<decimal>) || propertyType == typeof(decimal))
                     {
                         var toStringExp = Expression.Call(propertyExp, "ToString", null, null);
-                        MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                        MethodInfo? method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                        if (method == null) return query;
                         var someValue = Expression.Constant(fieldValue, typeof(string));
                         var containsMethodExp = Expression.Call(toStringExp, method, someValue);
 
@@ -136,7 +144,9 @@ namespace api.Controllers
                 return query;
             }
 
-            IQueryable<TEntity> query = _dbSet;
+            IQueryable<TEntity>? query = _dbSet;
+
+            if (query == null) return Ok();
 
             // Apply includes
             foreach (var include in Includes)
@@ -185,6 +195,7 @@ namespace api.Controllers
             {
                 return BadRequest("Item is null");
             }
+            if (_dbSet == null || _context == null) return NotFound();
 
             var existingItem = await _dbSet.FindAsync(id);
             if (existingItem == null)
@@ -192,12 +203,11 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            // Обновляем только те поля, которые были переданы
             var itemProperties = item.GetType().GetProperties();
             foreach (var property in itemProperties)
             {
                 var newValue = property.GetValue(item);
-                if (newValue != null) // проверяем, что новое значение поля не null
+                if (newValue != null)
                 {
                     var existingValue = property.GetValue(existingItem);
                     if (existingValue != newValue)
@@ -215,7 +225,7 @@ namespace api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await _dbSet.AnyAsync(e => (int)e.GetType().GetProperty("ID").GetValue(e) == id))
+                if (!await _dbSet.AnyAsync(e => (int?)e.GetType().GetProperty("ID").GetValue(e) == id))
                 {
                     return NotFound();
                 }
@@ -231,14 +241,17 @@ namespace api.Controllers
         [HttpPost]
         public async Task<ActionResult<TEntity>> Post(TEntity item)
         {
+            if (_dbSet == null || _context == null || item == null) return NotFound();
+
             _dbSet.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetItem", new { id = item.GetType().GetProperty("ID").GetValue(item) }, item);
+            return CreatedAtAction("GetItem", new { id = item.GetType().GetProperty("ID")?.GetValue(item) }, item);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (_dbSet == null || _context == null) return NotFound();
             var item = await _dbSet.FindAsync(id);
             if (item == null)
             {

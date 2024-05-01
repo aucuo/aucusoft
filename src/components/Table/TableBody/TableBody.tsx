@@ -50,7 +50,9 @@ export const TableBody = observer(() => {
                                 )
                             }
                         </td>
-                    ) : ("")
+                    ) : (
+                        <td style={{display: "none"}}>{item[header]}</td>
+                    )
                 ))}
             </tr>
         ))}

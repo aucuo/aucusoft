@@ -25,8 +25,15 @@ export const Search = observer(() => {
     };
 
     const handleAdd = () => {
-
+        console.log(1);
     }
+
+    const handleDelete = () => {
+        console.log(1);
+        console.log(TableStore.selectedRows);
+    }
+
+    //todo insert & delete
 
     return (
         <div className="search">
@@ -39,12 +46,12 @@ export const Search = observer(() => {
                         onInput={handleSearchChange}
                     />
                 </div>
-                <button className="button search__button--add" type="button" onClick={() => handleAdd}>
+                <button className="button search__button--add" type="button" onClick={() => handleAdd()}>
                     <svg width="18" height="18">
                         <use href="public/icons/sprites.svg#add-square"></use>
                     </svg>
                 </button>
-                <button className="button search__button--delete" type="button">
+                <button className="button search__button--delete" type="button" onClick={() => handleDelete()}>
                     <svg width="18" height="18">
                         <use href="public/icons/sprites.svg#trash"></use>
                     </svg>
