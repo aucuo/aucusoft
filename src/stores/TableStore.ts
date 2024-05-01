@@ -14,10 +14,15 @@ interface Option {
     name: string;
 }
 
+interface Row {
+    id: number;
+    selected: boolean;
+}
+
 class TableStore {
     data: DataItem[] = [];
     additionalData: { [key: string]: Option[] } = {};
-    selectedRows: boolean[] = [];
+    selectedRows: Row[] = [];
     currentPage: number = 1;
     pagesCount: number = 1;
     searchQuery: string = '';
@@ -71,14 +76,14 @@ class TableStore {
 
     // Table rows
     toggleRow(index: number) {
-        this.selectedRows[index] = !this.selectedRows[index];
+        this.selectedRows[index].selected = !this.selectedRows[index].selected;
     }
     toggleAllRows() {
-        const allSelected = this.selectedRows.every(Boolean);
-        this.selectedRows.fill(!allSelected);
+        const allSelected = this.selectedRows.every(row => row.selected);
+        this.selectedRows.forEach(row => row.selected = !allSelected);
     }
     get allSelected() {
-        return this.selectedRows.every(Boolean);
+        return this.selectedRows.every(row => row.selected);
     }
 
     // API
@@ -102,10 +107,12 @@ class TableStore {
 
             const jsonData = await response.json();
             runInAction(() => {
-                this.data = jsonData.data.filter((item: DataItem) => Object.values(item).some(v => v !== null && !(Array.isArray(v) && v.length === 0)));
+                this.data = jsonData.data.filter((item:any) =>
+                    Object.values(item).some(v => v !== null && !(Array.isArray(v) && v.length === 0))
+                );
                 this.additionalData = jsonData.additional;
-                this.pagesCount = jsonData["totalPages"];
-                this.selectedRows = new Array(this.data.length).fill(false);
+                this.pagesCount = jsonData.totalPages;
+                this.selectedRows = this.data.map(item => ({ id: item.id, selected: false }));
                 if (!this.availableFilters.length) {
                     this.availableFilters = Object.keys(this.data[0] || {});
                 }
@@ -119,6 +126,40 @@ class TableStore {
             });
         }
     }
+    async deleteData(itemId:number) {
+        const token = localStorage.getItem('token');
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+
+        const url = `https://localhost:7030/aucusoft/Projects/${itemId}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'DELETE',
+                headers: headers
+            });
+
+            if (response.ok) {
+                runInAction(() => {
+                    // Обновляем данные в UI, например, удаляем строку из списка
+                    toastStore.setShow('Project deleted successfully', "default");
+                    this.loadData();
+                });
+            } else {
+                // Обработка ошибок, если запрос не удался
+                toastStore.setShow('Failed to delete the project.', "error");
+            }
+        } catch (error) {
+            runInAction(() => {
+                authStore.logout();
+                toastStore.setShow(`Failed to fetch data. Try to re-login`, "warning");
+                this.isLoading = false;
+            });
+        }
+    }
+
     // Update API
     async updateItem(index: number, key: string, value: any, id: number) {
         const item = this.data[index];

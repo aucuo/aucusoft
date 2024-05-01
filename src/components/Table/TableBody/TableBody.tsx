@@ -11,12 +11,12 @@ export const TableBody = observer(() => {
     return (
         <tbody className="table__body">
         {TableStore.data.map((item, index) => (
-            <tr key={index} className={`table__row ${TableStore.selectedRows[index] ? 'table__row--active' : ''}`}>
+            <tr key={index} className={`table__row ${TableStore.selectedRows[index]?.selected ? 'table__row--active': ''}`}>
                 <td className="table__item">
                     <input
                         type="checkbox"
                         className="table__checkbox"
-                        checked={TableStore.selectedRows[index]}
+                        checked={TableStore.selectedRows[index]?.selected || false}
                         onChange={() => TableStore.toggleRow(index)}
                     />
                 </td>
@@ -51,7 +51,7 @@ export const TableBody = observer(() => {
                             }
                         </td>
                     ) : (
-                        <td style={{display: "none"}}>{item[header]}</td>
+                        <td key={`${header}-${index}`} style={{display: "none"}}>{item[header]}</td>
                     )
                 ))}
             </tr>

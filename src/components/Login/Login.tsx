@@ -20,6 +20,7 @@ export const Login = observer(() => {
         }
     }
 
+    // todo анимация появления & исчезновения на загрузку
     return (
         <div className="login">
             <Frame name={'Login'} hasButtons={false}>

@@ -111,3 +111,14 @@
     }
   }
 }
+
+.modal {
+
+  &-content {
+    --bs-modal-bg: var(--gray-transparent);
+    --bs-modal-border-radius: 10px;
+    --bs-modal-border-color: var(--gray-hover-transparent);
+    --bs-modal-border-width: 1px;
+    backdrop-filter: blur(5px);
+  }
+}

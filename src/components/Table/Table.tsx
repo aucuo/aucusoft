@@ -26,6 +26,7 @@ export const Table = observer(({tableName, search = true, navigation = true}: {
         await tableStore.loadData();
     };
 
+    // todo анимация появления & исчезновения на загрузку
     if (tableName === undefined || tableStore.data.length === 0) {
         return (
             <TableStoreProvider tableStore={tableStore}>
@@ -56,13 +57,13 @@ export const Table = observer(({tableName, search = true, navigation = true}: {
                 <div className="table">
                     <table className="table" cellSpacing={0}>
                         <TableHead/>
-                        {tableStore.isLoading &&
-                            <div className="table--loading">
-                                <Spinner animation="border" role="status"></Spinner>
-                            </div>
-                        }
                         <TableBody/>
                     </table>
+                    {tableStore.isLoading &&
+                        <div className="table--loading">
+                            <Spinner animation="border" role="status"></Spinner>
+                        </div>
+                    }
                 </div>
                 {navigation && <Navigation/>}
             </Frame>
