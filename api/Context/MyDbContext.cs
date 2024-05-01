@@ -46,6 +46,8 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Worklog> Worklogs { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySql("server=127.0.0.2;port=3306;database=aucusoft_v2;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.24-mysql"));
 
@@ -54,6 +56,14 @@ public partial class MyDbContext : DbContext
         modelBuilder
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("users");
+
+            entity.Property(e => e.Username).IsRequired().HasMaxLength(255);
+            entity.Property(e => e.Password).IsRequired().HasMaxLength(255);
+        });
 
         modelBuilder.Entity<Client>(entity =>
         {

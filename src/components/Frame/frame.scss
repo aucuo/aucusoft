@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 10px;
   height: 100%;
-  min-height: 300px;
+  //min-height: 300px;
   padding: 20px;
   border-radius: 20px;
   border: 1px solid var(--border-color);
@@ -19,6 +19,7 @@
     right: 100px;
     height: fit-content;
     min-height: 452px;
+    background-color: var(--gray-transparent);
   }
 
   &__top {

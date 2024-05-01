@@ -20,10 +20,10 @@
   border-radius: 10px;
   padding: 9px;
   background-color: var(--gray-transparent);
-  color: var(--gray1);
+  color: var(--icon-stroke);
   font-size: 14px;
   cursor: pointer;
-  transition: .1s;
+  transition: .2s;
   border: 1px solid var(--border-color);
 
   svg {
@@ -38,8 +38,8 @@
 
   &:not([disabled]):hover {
     background-color: var(--gray-hover-transparent);
-    color: #fff;
-    --icon-stroke: #fff;
+    color: var(--primary-text-color);
+    --icon-stroke: var(--primary-text-color);
   }
 
   &:not([disabled]):active {

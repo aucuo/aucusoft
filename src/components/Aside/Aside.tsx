@@ -1,5 +1,6 @@
 import './aside.scss'
 import {appStore} from "@/stores/AppStore.ts"
+import AuthStore from '@/stores/AuthStore';
 interface AsideProps {
     activePage: string;
     onMenuItemClick(newContent:string): void;
@@ -50,12 +51,7 @@ export function Aside({activePage, onMenuItemClick} : AsideProps) {
                                 <use xlinkHref='public/icons/sprites.svg#mask'></use>
                             </svg>
                         </li>
-                        <li className="sidebar__link">
-                            <svg className="sidebar__icon" width={24} height={24}>
-                                <use xlinkHref='public/icons/sprites.svg#setting'></use>
-                            </svg>
-                        </li>
-                        <li className="sidebar__link">
+                        <li className="sidebar__link" onClick={AuthStore.logout}>
                             <svg className="sidebar__icon" width={24} height={24}>
                                 <use xlinkHref='public/icons/sprites.svg#logout'></use>
                             </svg>

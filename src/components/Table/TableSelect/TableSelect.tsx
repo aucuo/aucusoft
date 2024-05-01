@@ -62,7 +62,7 @@ export const TableSelect = ({ index, keyField, value, options, id }: TableSelect
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
         >
-            <option value="">N/A</option>
+            <option value="" disabled={true}>N/A</option>
             {options.map(option => (
                 <option key={option.id} value={option.id}>{option.name}</option>
             ))}

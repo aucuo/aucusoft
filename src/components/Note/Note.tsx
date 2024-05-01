@@ -1,5 +1,5 @@
 import './note.scss';
-import { Frame } from '@components/Frame';
+import { Frame } from '@components/Frame/Frame.tsx';
 
 interface Props {
     header: string;

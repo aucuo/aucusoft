@@ -1,15 +1,16 @@
 import { makeAutoObservable } from 'mobx';
 
 class AppStore {
-    isDark: boolean = true;
+    theme: string = localStorage.getItem('theme') || "dark";
 
     constructor() {
         makeAutoObservable(this);
+        localStorage.setItem(('theme'), this.theme);
     }
 
     toggleTheme = () => {
-        this.isDark = !this.isDark;
-        console.log(this.isDark)
+        this.theme = this.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(('theme'), this.theme);
     }
 }
 

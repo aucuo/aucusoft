@@ -1,6 +1,6 @@
 // components/Table.tsx
 import {observer} from "mobx-react";
-import {Frame} from '@components/Frame';
+import {Frame} from '@components/Frame/Frame.tsx';
 import {Search} from "@components/Table/Search/Search";
 import {Navigation} from "@components/Table/Navigation/Navigation";
 import {TableHead} from "@components/Table/TableHead/TableHead";

@@ -1,5 +1,6 @@
 ﻿using api.Context;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using System.Reflection;
 namespace api.Controllers
 {
     [Route("aucusoft/[controller]")]
+    [Authorize]
     public abstract class BaseController<TEntity, TContext> : ControllerBase
         where TEntity : class
         where TContext : DbContext

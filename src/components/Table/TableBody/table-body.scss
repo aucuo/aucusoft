@@ -12,7 +12,7 @@
 
     &:hover,
     &--active {
-      background-color: var(--blue-transparent);
+      background-color: var(--active-color);
 
       .table__item:nth-child(2) input {
         color: #fff !important;

@@ -17,8 +17,8 @@ $enable-caret: false;
   &-menu {
     --bs-dropdown-border-radius: 10px;
     --bs-dropdown-bg: var(--gray-hover-transparent);
-    --bs-dropdown-link-hover-bg: var(--blue-transparent);
-    --bs-dropdown-link-active-bg: var(--blue-hover-transparent);
+    --bs-dropdown-link-hover-bg: var(--active-color);
+    --bs-dropdown-link-active-bg: var(--active-hover-color);
     --bs-dropdown-link-color: var(--gray1);
     --bs-dropdown-link-hover-color: var(--primary-text-color);
 

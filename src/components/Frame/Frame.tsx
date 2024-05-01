@@ -5,9 +5,10 @@ interface Props {
     name: string,
     children: React.ReactNode;
     refreshTable?: ()=>void;
+    hasButtons?: boolean;
 }
 
-export function Frame({ name, children, refreshTable }: Props) {
+export function Frame({ name, children, refreshTable, hasButtons = true }: Props) {
     const [isFull, setIsFull] = useState(false);
 
     const frameClass = `frame ${isFull ? 'frame--full' : ''}`;
@@ -28,7 +29,7 @@ export function Frame({ name, children, refreshTable }: Props) {
         <div className={frameClass}>
             <div className="frame__top">
                 <span className="frame__name">{name}</span>
-                <div className="frame__top-buttons">
+                <div className="frame__top-buttons" style={{display: hasButtons ? '' : 'none'}}>
                     <button className="frame__resize frame__button button button--transparent button--nopadding" onClick={refreshTable} title={'Refresh Table'}>
                         <svg className="frame__icon" width={24} height={24}>
                             <use xlinkHref='public/icons/sprites.svg#refresh'></use>

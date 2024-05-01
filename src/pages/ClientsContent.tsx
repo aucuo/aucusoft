@@ -1,8 +1,8 @@
 import '@/App.scss'
 
-import {Info} from '@components/Info'
-import {Note} from '@components/Note'
-import {Table} from "@components/Table";
+import {Info} from '@components/Info/Info.tsx'
+import {Note} from '@components/Note/Note.tsx'
+import {Table} from "@components/Table/Table.tsx";
 
 export function ClientsContent() {
     return (

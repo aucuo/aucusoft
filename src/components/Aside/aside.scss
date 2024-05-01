@@ -33,11 +33,11 @@
     border-radius: 10px;
     background-color: var(--gray-transparent);
     cursor: pointer;
-    color: var(--gray2);
+    color: var(--primary-text-color);
     transition: .3s;
 
     &:hover {
-      color: #fff;
+      color: var(--primary-text-hover-color);
     }
 
     &-name {
@@ -59,7 +59,8 @@
     cursor: pointer;
     padding: 10px;
     transition: .3s;
-    
+    border-radius: 10px;
+
     &--active {
       color: #fff;
       --icon-stroke: var(--icon-stroke-active);
@@ -68,7 +69,6 @@
     &:hover {
       color: #fff;
       background-color: var(--gray-transparent);
-      border-radius: 10px;
     }
   }
 

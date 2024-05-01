@@ -1,5 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import {toastStore} from "@/stores/ToastStore.ts";
+import authStore from "@/stores/AuthStore.ts";
 
 interface DataItem {
     [key: string]: any;
@@ -90,12 +91,22 @@ class TableStore {
 
         const url = `${this.url}?${params.toString()}`;
         this.isLoading = true;
-        try {
-            const response = await fetch(url);
-            const jsonData = await response.json();
 
+        // Получение токена из localStorage или AuthStore
+        const token = localStorage.getItem('token'); // или AuthStore.token, если вы используете MobX Store для хранения токена
+
+        // Настройка заголовков запроса с токеном JWT
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+
+        try {
+            const response = await fetch(url, { headers: headers });
+
+            const jsonData = await response.json();
             runInAction(() => {
-                this.data = jsonData.data.filter((item : DataItem)=> Object.values(item).some(v => v !== null && !(Array.isArray(v) && v.length === 0)));
+                this.data = jsonData.data.filter((item: DataItem) => Object.values(item).some(v => v !== null && !(Array.isArray(v) && v.length === 0)));
                 this.additionalData = jsonData.additional;
                 this.pagesCount = jsonData.totalPages;
                 this.selectedRows = new Array(this.data.length).fill(false);
@@ -106,7 +117,8 @@ class TableStore {
             });
         } catch (error) {
             runInAction(() => {
-                toastStore.setShow(`Failed to fetch data: ${error}`, "error");
+                authStore.logout();
+                toastStore.setShow(`Failed to fetch data. Try to re-login`, "warning");
                 this.isLoading = false;
             });
         }
@@ -142,10 +154,12 @@ class TableStore {
 
         const url = `${baseUrl}/${id}?${params.toString()}`;
 
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: params
