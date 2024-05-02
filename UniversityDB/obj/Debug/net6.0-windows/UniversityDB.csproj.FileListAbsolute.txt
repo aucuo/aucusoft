@@ -1,0 +1,96 @@
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.exe
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.deps.json
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.runtimeconfig.json
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.pdb
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.LoginForm.resources
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.GenerateResource.cache
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.GeneratedMSBuildEditorConfig.editorconfig
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.AssemblyInfoInputs.cache
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.AssemblyInfo.cs
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.CoreCompileInputs.cache
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\refint\UniversityDB.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.pdb
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.genruntimeconfig.cache
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\ref\UniversityDB.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Properties.Resources.resources
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\BouncyCastle.Cryptography.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\Google.Protobuf.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\MySql.Data.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\NuGet.Frameworks.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\System.Diagnostics.DiagnosticSource.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\System.IO.Pipelines.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\System.Text.Json.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\ZstdSharp.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\comerr64.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\gssapi64.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\k5sprt64.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\krb5_64.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.AssemblyReference.cache
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.CopyComplete
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.AdminScreen.resources
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.DeaneryScreen.resources
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.StudentScreen.resources
+D:\learning3\kursach bd\UniversityDB\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.TeacherScreen.resources
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.exe
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.deps.json
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.runtimeconfig.json
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\UniversityDB.pdb
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\BouncyCastle.Cryptography.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\Google.Protobuf.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\MySql.Data.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\NuGet.Frameworks.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\System.Diagnostics.DiagnosticSource.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\System.IO.Pipelines.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\System.Text.Json.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\ZstdSharp.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\comerr64.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\gssapi64.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\k5sprt64.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\krb5_64.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
+D:\Desktop\Freelance\UniversityDB\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.AssemblyReference.cache
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.AdminScreen.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.DeaneryScreen.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.LoginForm.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Properties.Resources.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.StudentScreen.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.TeacherScreen.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.GenerateResource.cache
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.AssemblyInfoInputs.cache
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.AssemblyInfo.cs
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.CoreCompileInputs.cache
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.csproj.CopyComplete
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.dll
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\refint\UniversityDB.dll
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.pdb
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.genruntimeconfig.cache
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\ref\UniversityDB.dll
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.DeaneryControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.DepartmentsControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.DiplomaControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.DisciplinesControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.GroupsControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.LessonsControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.ResearchControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.SpecialtyControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.StudyPlanControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.TeachersControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.Admin.StudentsControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.Student.StudentsControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.Admin.SessionControl.resources
+D:\Desktop\Freelance\UniversityDB\obj\Debug\net6.0-windows\UniversityDB.Controls.Student.SessionControl.resources
