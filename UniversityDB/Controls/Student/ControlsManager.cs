@@ -20,44 +20,29 @@ namespace UniversityDB.Controls.Student
             {
                 switch (controlKey)
                 {
-                    case "Teachers":
-                        loadedControls[controlKey] = new TeachersControl();
-                        break;
-                    case "Students":
-                        loadedControls[controlKey] = new StudentsControl();
-                        break;
                     case "Specialty":
-                        loadedControls[controlKey] = new SpecialtyControl();
+                        loadedControls[controlKey] = new Student.SpecialtyControl();
                         break;
                     case "Diploma":
-                        loadedControls[controlKey] = new DiplomaControl();
+                        loadedControls[controlKey] = new Student.DiplomaControl();
                         break;
                     case "Lessons":
-                        loadedControls[controlKey] = new LessonsControl();
+                        loadedControls[controlKey] = new Student.LessonsControl();
                         break;
                     case "Deanery":
-                        loadedControls[controlKey] = new DeaneryControl();
+                        loadedControls[controlKey] = new Student.DeaneryControl();
                         break;
                     case "Departments":
-                        loadedControls[controlKey] = new DepartmentsControl();
-                        break;
-                    case "Groups":
-                        loadedControls[controlKey] = new GroupsControl();
+                        loadedControls[controlKey] = new Student.DepartmentsControl();
                         break;
                     case "Session":
-                        loadedControls[controlKey] = new SessionControl();
-                        break;
-                    case "Disciplines":
-                        loadedControls[controlKey] = new DisciplinesControl();
-                        break;
-                    case "Research":
-                        loadedControls[controlKey] = new ResearchControl();
+                        loadedControls[controlKey] = new Student.SessionControl();
                         break;
                     case "StudyPlan":
-                        loadedControls[controlKey] = new StudyPlanControl();
+                        loadedControls[controlKey] = new Student.StudyPlanControl();
                         break;
                     default:
-                        loadedControls[controlKey] = new TeachersControl();
+                        loadedControls[controlKey] = new Student.LessonsControl();
                         break;
                 }
             }

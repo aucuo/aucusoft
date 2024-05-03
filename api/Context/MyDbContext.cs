@@ -236,7 +236,7 @@ public partial class MyDbContext : DbContext
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("projects_ibfk_1");
 
-            entity.HasOne(d => d.ProjectManager).WithMany(p => p.Projects)
+            entity.HasOne(d => d.Manager).WithMany(p => p.Projects)
                 .HasForeignKey(d => d.ManagerId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("projects_ibfk_2");

@@ -24,7 +24,7 @@ namespace UniversityDB.Controls.Admin
                         loadedControls[controlKey] = new TeachersControl();
                         break;
                     case "Students":
-                        // loadedControls[controlKey] = new StudentsControl();
+                        loadedControls[controlKey] = new StudentsControl();
                         break;
                     case "Specialty":
                         loadedControls[controlKey] = new SpecialtyControl();
@@ -45,7 +45,7 @@ namespace UniversityDB.Controls.Admin
                         loadedControls[controlKey] = new GroupsControl();
                         break;
                     case "Session":
-                        //loadedControls[controlKey] = new SessionControl();
+                        loadedControls[controlKey] = new SessionControl();
                         break;
                     case "Disciplines":
                         loadedControls[controlKey] = new DisciplinesControl();

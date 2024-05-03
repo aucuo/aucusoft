@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Desktop\\Freelance\\UniversityDB\\UniversityDB.csproj": {}
+    "D:\\Desktop\\Freelance\\aucusoft\\UniversityDB\\UniversityDB.csproj": {}
   },
   "projects": {
-    "D:\\Desktop\\Freelance\\UniversityDB\\UniversityDB.csproj": {
+    "D:\\Desktop\\Freelance\\aucusoft\\UniversityDB\\UniversityDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Desktop\\Freelance\\UniversityDB\\UniversityDB.csproj",
+        "projectUniqueName": "D:\\Desktop\\Freelance\\aucusoft\\UniversityDB\\UniversityDB.csproj",
         "projectName": "UniversityDB",
-        "projectPath": "D:\\Desktop\\Freelance\\UniversityDB\\UniversityDB.csproj",
+        "projectPath": "D:\\Desktop\\Freelance\\aucusoft\\UniversityDB\\UniversityDB.csproj",
         "packagesPath": "C:\\Users\\aucuo\\.nuget\\packages\\",
-        "outputPath": "D:\\Desktop\\Freelance\\UniversityDB\\obj\\",
+        "outputPath": "D:\\Desktop\\Freelance\\aucusoft\\UniversityDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\aucuo\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -31,13 +31,16 @@ class TableStore {
     isLoading: boolean = true;
     url?: string = undefined;
     urlParams?: string = '';
+    urlFilters?: { fieldName: string, fieldValue: string };
+    urlSortBy?: string;
+    urlSortDirection?: string;
 
     constructor(tableName: string) {
         makeAutoObservable(this);
-        this.url = `https://localhost:5001/aucusoft/${tableName}`;
+        this.url = `https://localhost:7030/aucusoft/${tableName}`;
     }
 
-    // URL
+    // Search
     updateUrlParams(key: string, value: string) {
         let params = new URLSearchParams(this.urlParams);
         params.set(key, value);  // Обновляет или добавляет параметр
@@ -92,6 +95,25 @@ class TableStore {
         return this.selectedRows.every(row => row.selected);
     }
 
+    // Filters
+    setFilter(fieldName: string, fieldValue: string, dateFilterType: string = 'on') {
+        if (fieldName.endsWith('Date')) {
+            this.updateUrlParams('dateFilterType', dateFilterType); // Устанавливаем тип фильтрации даты
+        }
+        this.urlFilters = {fieldName, fieldValue};
+    }
+
+    setSorting(sortBy: string, sortDirection: string) {
+        this.urlSortBy = sortBy;
+        this.urlSortDirection = sortDirection;
+    }
+
+    clearFilters() {
+        this.urlFilters = undefined;
+        // this.urlSortBy = undefined;
+        // this.urlSortDirection = 'asc';
+    }
+
     // API
     async loadData() {
         let params = new URLSearchParams(this.urlParams);
@@ -99,8 +121,20 @@ class TableStore {
         params.set('pageSize', '5');
         params.set('sortDirection', 'asc');
 
+        // Applying filters
+        if (this.urlFilters?.fieldName && this.urlFilters.fieldValue) {
+            params.set('fieldName', this.urlFilters.fieldName);
+            params.set('fieldValue', this.urlFilters.fieldValue);
+        }
+        if (this.urlSortBy && this.urlSortDirection) {
+            params.set('sortBy', this.urlSortBy);
+            params.set('sortDirection', this.urlSortDirection);
+        }
+
         const url = `${this.url}?${params.toString()}`;
         this.isLoading = true;
+
+        console.log(url);
 
         const token = localStorage.getItem('token');
         const headers = {
@@ -140,8 +174,8 @@ class TableStore {
             'Content-Type': 'application/json'
         };
 
-        const url = `https://localhost:5001/aucusoft/Projects/${itemId}`;
-
+        const url = `${this.url}/${itemId}`;
+        console.log(url)
         try {
             const response = await fetch(url, {
                 method: 'DELETE',
@@ -155,7 +189,7 @@ class TableStore {
                 });
             } else {
                 // Обработка ошибок, если запрос не удался
-                toastStore.setShow('Failed to delete the project.', "error");
+                toastStore.setShow('Failed to delete data', "error");
             }
         } catch (error) {
             runInAction(() => {
@@ -165,8 +199,6 @@ class TableStore {
             });
         }
     }
-
-    //todo filters
 
     // Update API
     async updateItem(index: number, key: string, value: any, id: number) {
@@ -179,13 +211,12 @@ class TableStore {
 
     async addData(item: DataItem) {
         this.isLoading = true;
-        const baseUrl = this.url || "https://localhost:5001/aucusoft/Projects";
+        const baseUrl = this.url || "https://localhost:7030/aucusoft/Projects";
         const params = new URLSearchParams();
 
         Object.keys(item).forEach((key) => {
-            console.log(`${key}: ${item[key]}`)
             if (key.endsWith('FK')) {
-                const newKey = key.replace('FK', 'ID');
+                const newKey = key.replace('FK', 'Id');
                 params.append(newKey, item[key]);
             } else if (key.endsWith('Date')) {
                 params.append(key, item[key]);
@@ -223,12 +254,12 @@ class TableStore {
             return;
         }
 
-        const baseUrl = this.url || "https://localhost:5001/aucusoft/Projects";
+        const baseUrl = this.url || "https://localhost:7030/aucusoft/Projects";
         const params = new URLSearchParams();
 
         Object.keys(item).forEach(key => {
             if (key.endsWith('FK')) {
-                const newKey = key.replace('FK', 'ID');
+                const newKey = key.replace('FK', 'Id');
                 params.append(newKey, item[key]);
             } else if (key.endsWith('Date')) {
                 params.append(key, item[key]);

@@ -49,7 +49,7 @@ namespace UniversityDB.Controls
                 ";
                 DataTable teachersData = new DatabaseManager().ExecuteQuery(query);
                 dataGridView1.DataSource = teachersData;
-                dataGridView1.Columns["TeacherID"].Visible = false; // Скрываем колонку ID
+                dataGridView1.Columns["TeacherID"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -159,7 +159,7 @@ namespace UniversityDB.Controls
                 MessageBox.Show("Выберите учителя для обновления.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //delete
         private void button4_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)

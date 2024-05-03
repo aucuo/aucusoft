@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelLessons = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
@@ -36,20 +38,20 @@
             this.button10 = new System.Windows.Forms.Button();
             this.label32 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button11 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelLessons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLessons
             // 
+            this.panelLessons.Controls.Add(this.button4);
             this.panelLessons.Controls.Add(this.dataGridView1);
             this.panelLessons.Controls.Add(this.label14);
             this.panelLessons.Controls.Add(this.dateTimePicker2);
@@ -58,7 +60,7 @@
             this.panelLessons.Controls.Add(this.button10);
             this.panelLessons.Controls.Add(this.label32);
             this.panelLessons.Controls.Add(this.label17);
-            this.panelLessons.Controls.Add(this.textBox11);
+            this.panelLessons.Controls.Add(this.comboBox1);
             this.panelLessons.Controls.Add(this.comboBox4);
             this.panelLessons.Controls.Add(this.comboBox3);
             this.panelLessons.Controls.Add(this.button11);
@@ -70,6 +72,40 @@
             this.panelLessons.Name = "panelLessons";
             this.panelLessons.Size = new System.Drawing.Size(1188, 718);
             this.panelLessons.TabIndex = 28;
+            // 
+            // button4
+            // 
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(319, 194);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(96, 28);
+            this.button4.TabIndex = 75;
+            this.button4.Text = "Add";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 406);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1188, 312);
+            this.dataGridView1.StandardTab = true;
+            this.dataGridView1.TabIndex = 50;
             // 
             // label14
             // 
@@ -88,6 +124,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(97, 23);
             this.dateTimePicker2.TabIndex = 48;
+            this.dateTimePicker2.Value = new System.DateTime(2024, 5, 3, 0, 0, 0, 0);
             // 
             // label13
             // 
@@ -118,6 +155,7 @@
             this.button10.TabIndex = 43;
             this.button10.Text = "Delete";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // label32
             // 
@@ -132,19 +170,20 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(373, 105);
+            this.label17.Location = new System.Drawing.Point(346, 105);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 15);
             this.label17.TabIndex = 35;
             this.label17.Text = "TeachingID";
             // 
-            // textBox11
+            // comboBox1
             // 
-            this.textBox11.Location = new System.Drawing.Point(372, 122);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(80, 23);
-            this.textBox11.TabIndex = 28;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(346, 122);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(146, 23);
+            this.comboBox1.TabIndex = 34;
             // 
             // comboBox4
             // 
@@ -175,6 +214,7 @@
             this.button11.TabIndex = 42;
             this.button11.Text = "Edit";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // label15
             // 
@@ -196,6 +236,7 @@
             this.button12.TabIndex = 41;
             this.button12.Text = "Save";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // label30
             // 
@@ -205,27 +246,6 @@
             this.label30.Size = new System.Drawing.Size(75, 15);
             this.label30.TabIndex = 30;
             this.label30.Text = "Group Name";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 406);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1188, 312);
-            this.dataGridView1.StandardTab = true;
-            this.dataGridView1.TabIndex = 50;
             // 
             // LessonsControl
             // 
@@ -251,7 +271,6 @@
         private Button button10;
         private Label label32;
         private Label label17;
-        private TextBox textBox11;
         private ComboBox comboBox4;
         private ComboBox comboBox3;
         private Button button11;
@@ -259,5 +278,7 @@
         private Button button12;
         private Label label30;
         private DataGridView dataGridView1;
+        private Button button4;
+        private ComboBox comboBox1;
     }
 }

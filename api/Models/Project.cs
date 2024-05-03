@@ -21,7 +21,7 @@ public partial class Project
     public int? ManagerId { get; set; }
 
     public virtual Client? Client { get; set; }
-    public virtual Manager? ProjectManager { get; set; }
+    public virtual Manager? Manager { get; set; }
     public virtual ICollection<Clientfeedback> Clientfeedbacks { get; set; } = new List<Clientfeedback>();
 
     public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();

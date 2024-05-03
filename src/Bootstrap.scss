@@ -17,15 +17,16 @@ $enable-caret: false;
 .dropdown {
   &-menu {
     --bs-dropdown-border-radius: 10px;
-    --bs-dropdown-bg: var(--gray-hover-transparent);
+    --bs-dropdown-bg: var(--gray-transparent);
     --bs-dropdown-link-hover-bg: var(--active-color);
     --bs-dropdown-link-active-bg: var(--active-hover-color);
     --bs-dropdown-link-color: var(--gray1);
     --bs-dropdown-link-hover-color: var(--primary-text-color);
 
-    width: fit-content;
     backdrop-filter: blur(4px);
     margin-top: 8px;
+    padding: 10px;
+    width: fit-content;
   }
   &-item {
     width: auto;
@@ -38,10 +39,16 @@ $enable-caret: false;
       font-weight: 500;
       color: var(--gray3);
       transition: .1s;
+      padding: 3.5px 15px;
+      margin-bottom: 3.5px;
+
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
     }
 
     &-select {
-      box-sizing: content-box;
+      box-sizing: border-box;
       width: 100%;
       min-width: 150px;
       border-radius: 10px;
@@ -59,11 +66,15 @@ $enable-caret: false;
       border: 1px solid var(--border-color);
       background-color: var(--gray-hover-transparent);
       padding: 5px 10px;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     &-button {
-      margin-left: auto;
+      white-space: nowrap;
     }
+  }
+  &__buttons {
+    display: inline-flex;
+    gap: 10px;
   }
 }

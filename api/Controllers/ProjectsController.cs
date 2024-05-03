@@ -11,7 +11,7 @@ public class ProjectsController : BaseController<Project, MyDbContext>
         new Expression<Func<Project, object>>[]
         {
             p => p.Client,
-            p => p.ProjectManager,
+            p => p.Manager,
         };
     protected override Expression<Func<Project, object>> Projection =>
         p => new
@@ -22,7 +22,7 @@ public class ProjectsController : BaseController<Project, MyDbContext>
             p.EndDate,
             p.Budget,
             ClientFK = p.Client != null ? p.ClientId : null,
-            ManagerFK = p.ProjectManager != null ? p.ManagerId : null,
+            ManagerFK = p.Manager != null ? p.ManagerId : null,
         };
     protected override async Task<object> GetAdditionalDataAsync()
     {

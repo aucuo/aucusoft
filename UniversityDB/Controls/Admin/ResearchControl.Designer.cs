@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelResearch = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.label51 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -41,13 +43,21 @@
             this.button29 = new System.Windows.Forms.Button();
             this.label55 = new System.Windows.Forms.Label();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.panelResearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelResearch
             // 
+            this.panelResearch.Controls.Add(this.button7);
+            this.panelResearch.Controls.Add(this.button6);
+            this.panelResearch.Controls.Add(this.comboBox6);
+            this.panelResearch.Controls.Add(this.label11);
+            this.panelResearch.Controls.Add(this.button4);
             this.panelResearch.Controls.Add(this.dataGridView1);
             this.panelResearch.Controls.Add(this.comboBox9);
             this.panelResearch.Controls.Add(this.label51);
@@ -67,10 +77,44 @@
             this.panelResearch.Size = new System.Drawing.Size(1234, 712);
             this.panelResearch.TabIndex = 34;
             // 
+            // button4
+            // 
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(94, 165);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(96, 28);
+            this.button4.TabIndex = 75;
+            this.button4.Text = "Add";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 400);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1234, 312);
+            this.dataGridView1.StandardTab = true;
+            this.dataGridView1.TabIndex = 124;
+            // 
             // comboBox9
             // 
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(374, 121);
+            this.comboBox9.Location = new System.Drawing.Point(324, 121);
             this.comboBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(224, 23);
@@ -79,7 +123,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(374, 104);
+            this.label51.Location = new System.Drawing.Point(324, 104);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(92, 15);
             this.label51.TabIndex = 122;
@@ -88,7 +132,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(883, 104);
+            this.label48.Location = new System.Drawing.Point(739, 104);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(75, 15);
             this.label48.TabIndex = 121;
@@ -97,7 +141,7 @@
             // dateTimePicker3
             // 
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(883, 121);
+            this.dateTimePicker3.Location = new System.Drawing.Point(739, 121);
             this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(179, 23);
@@ -107,13 +151,14 @@
             // 
             this.button28.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button28.Location = new System.Drawing.Point(668, 203);
+            this.button28.Location = new System.Drawing.Point(400, 165);
             this.button28.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(96, 28);
             this.button28.TabIndex = 117;
             this.button28.Text = "Delete";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
             // comboBox10
             // 
@@ -137,7 +182,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(656, 104);
+            this.label54.Location = new System.Drawing.Point(555, 104);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(29, 15);
             this.label54.TabIndex = 114;
@@ -147,25 +192,27 @@
             // 
             this.button30.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button30.Location = new System.Drawing.Point(527, 203);
+            this.button30.Location = new System.Drawing.Point(298, 165);
             this.button30.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(96, 28);
             this.button30.TabIndex = 116;
             this.button30.Text = "Edit";
             this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // button29
             // 
             this.button29.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button29.Location = new System.Drawing.Point(374, 203);
+            this.button29.Location = new System.Drawing.Point(196, 165);
             this.button29.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(96, 28);
             this.button29.TabIndex = 115;
             this.button29.Text = "Save";
             this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
             // label55
             // 
@@ -178,32 +225,55 @@
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(655, 121);
+            this.textBox20.Location = new System.Drawing.Point(554, 121);
             this.textBox20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(179, 23);
             this.textBox20.TabIndex = 111;
             // 
-            // dataGridView1
+            // button7
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 400);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1234, 312);
-            this.dataGridView1.StandardTab = true;
-            this.dataGridView1.TabIndex = 124;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Location = new System.Drawing.Point(217, 292);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(88, 28);
+            this.button7.TabIndex = 127;
+            this.button7.Text = "Execute";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button6
+            // 
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(94, 292);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(117, 28);
+            this.button6.TabIndex = 128;
+            this.button6.Text = "Get data";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(94, 265);
+            this.comboBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(211, 23);
+            this.comboBox6.TabIndex = 126;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(94, 248);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(211, 15);
+            this.label11.TabIndex = 125;
+            this.label11.Text = "Additional:  desertation by department";
             // 
             // ResearchControl
             // 
@@ -235,5 +305,10 @@
         private Label label55;
         private TextBox textBox20;
         private DataGridView dataGridView1;
+        private Button button4;
+        private Button button7;
+        private Button button6;
+        private ComboBox comboBox6;
+        private Label label11;
     }
 }

@@ -12,7 +12,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace api.Controllers
 {
     [Route("aucusoft/[controller]")]
-    [Authorize]
+    //[Authorize]
     public abstract class BaseController<TEntity, TContext> : ControllerBase
         where TEntity : class
         where TContext : DbContext
@@ -69,6 +69,7 @@ namespace api.Controllers
             [FromQuery] string? sortBy = null,
             [FromQuery] string sortDirection = "asc",
             [FromQuery] string? searchQuery = null,
+            [FromQuery] string? dateFilterType = null,
             [FromQuery] string? fieldName = null,
             [FromQuery] string? fieldValue = null)
         {
@@ -110,82 +111,105 @@ namespace api.Controllers
 
                 return query;
             }
-            IQueryable<TEntity> ApplyFieldFilter(IQueryable<TEntity> query, string fieldName, string fieldValue)
+            IQueryable<TEntity> ApplyFieldFilter(IQueryable<TEntity> query, string fieldName, string fieldValue, string dateFilterType)
             {
                 if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(fieldValue))
                 {
-                    var parameterExp = Expression.Parameter(typeof(TEntity), "type");
-                    var propertyExp = Expression.Property(parameterExp, fieldName);
-                    var propertyType = ((PropertyInfo)propertyExp.Member).PropertyType;
+                    var parameterExp = Expression.Parameter(typeof(TEntity), "entity");
+                    Expression propertyExp = Expression.PropertyOrField(parameterExp, fieldName);
+                    Type propertyType = propertyExp.Type;
 
-                    if (propertyType == typeof(string))
+                    // Обработка дат
+                    if (propertyType == typeof(DateTime) || propertyType == typeof(DateTime?))
                     {
-                        MethodInfo? method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-                        if (method == null) return query;
-
+                        DateTime parsedDate;
+                        if (DateTime.TryParse(fieldValue, out parsedDate))
+                        {
+                            Expression dateFilter;
+                            switch (dateFilterType)
+                            {
+                                case "before":
+                                    dateFilter = Expression.LessThan(propertyExp, Expression.Constant(parsedDate, typeof(DateTime?)));
+                                    break;
+                                case "after":
+                                    dateFilter = Expression.GreaterThanOrEqual(propertyExp, Expression.Constant(parsedDate.AddDays(1), typeof(DateTime?)));
+                                    break;
+                                default: // "on"
+                                    var dayAfter = parsedDate.AddDays(1);
+                                    dateFilter = Expression.AndAlso(
+                                        Expression.GreaterThanOrEqual(propertyExp, Expression.Constant(parsedDate, typeof(DateTime?))),
+                                        Expression.LessThan(propertyExp, Expression.Constant(dayAfter, typeof(DateTime?)))
+                                    );
+                                    break;
+                            }
+                            var lambda = Expression.Lambda<Func<TEntity, bool>>(dateFilter, parameterExp);
+                            query = query.Where(lambda);
+                        }
+                    }
+                    else if (propertyType == typeof(string))
+                    {
+                        MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
                         var someValue = Expression.Constant(fieldValue, typeof(string));
                         var containsMethodExp = Expression.Call(propertyExp, method, someValue);
-
                         var lambda = Expression.Lambda<Func<TEntity, bool>>(containsMethodExp, parameterExp);
                         query = query.Where(lambda);
                     }
-                    else if (propertyType == typeof(Nullable<decimal>) || propertyType == typeof(decimal))
+                    else
                     {
-                        var toStringExp = Expression.Call(propertyExp, "ToString", null, null);
-                        MethodInfo? method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-                        if (method == null) return query;
-                        var someValue = Expression.Constant(fieldValue, typeof(string));
-                        var containsMethodExp = Expression.Call(toStringExp, method, someValue);
-
-                        var lambda = Expression.Lambda<Func<TEntity, bool>>(containsMethodExp, parameterExp);
-                        query = query.Where(lambda);
+                        throw new ArgumentException($"Field {fieldName} is not of type string or DateTime and cannot be used for Contains or range operations.");
                     }
                 }
                 return query;
             }
 
-            IQueryable<TEntity>? query = _dbSet;
-
-            if (query == null) return Ok();
-
-            // Apply includes
-            foreach (var include in Includes)
+            try
             {
-                query = query.Include(include);
+                IQueryable<TEntity>? query = _dbSet;
+                if (query == null) return Ok();
+
+                // Apply includes
+                foreach (var include in Includes)
+                {
+                    query = query.Include(include);
+                }
+
+                // Apply sorting
+                if (!string.IsNullOrEmpty(sortBy))
+                {
+                    query = ApplySorting(query, sortBy, sortDirection);
+                }
+
+                // Apply search and field filtering
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    query = ApplySearch(query, searchQuery);
+                }
+                else if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(fieldValue))
+                {
+                    query = ApplyFieldFilter(query, fieldName, fieldValue, dateFilterType ?? "on"); // Default to "on"
+                }
+
+                // Apply projection
+                var projectedQuery = query.Select(Projection);
+
+                // Apply pagination
+                var data = await projectedQuery.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                var additional = await GetAdditionalDataAsync();
+                var totalItems = await query.CountAsync();
+
+                return Ok(new
+                {
+                    data,
+                    additional,
+                    pageIndex,
+                    pageSize,
+                    totalPages = (int)Math.Ceiling((double)totalItems / pageSize)
+                });
             }
-
-            // Apply sorting
-            if (!string.IsNullOrEmpty(sortBy))
+            catch (Exception ex)
             {
-                query = ApplySorting(query, sortBy, sortDirection);
+                return StatusCode(500, "An error occurred while processing your request.");
             }
-
-            // Apply search and field filtering
-            if (!string.IsNullOrEmpty(searchQuery))
-            {
-                query = ApplySearch(query, searchQuery);
-            }
-            else if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(fieldValue))
-            {
-                query = ApplyFieldFilter(query, fieldName, fieldValue);
-            }
-
-            // Apply projection
-            var projectedQuery = query.Select(Projection);
-
-            // Apply pagination
-            var data = await projectedQuery.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
-            var additional = await GetAdditionalDataAsync();
-            var totalItems = await query.CountAsync();
-
-            return Ok(new
-            {
-                data,
-                additional,
-                pageIndex = pageIndex,
-                pageSize = pageSize,
-                totalPages = (int)Math.Ceiling((double)totalItems / pageSize)
-            });
         }
 
         [HttpPut("{id}")]

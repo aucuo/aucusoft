@@ -198,5 +198,10 @@ namespace UniversityDB
         {
             ControlsManager.ShowControl("StudyPlan", MainPanel);
         }
+
+        private void panelStudents_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -14,10 +14,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\Student\DeaneryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Student\DepartmentsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Student\DiplomaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Student\LessonsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Controls\Student\SessionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Controls\Student\StudentsControl.cs">
+    <Compile Update="Controls\Student\SpecialtyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Student\StudyPlanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="StudentScreen.cs">

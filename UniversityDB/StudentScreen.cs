@@ -19,11 +19,6 @@ namespace UniversityDB
             ControlsManager.ShowControl("Session", MainPanel);
         }
 
-        private void NavigateToSection(int yPos)
-        {
-            MainPanel.AutoScrollPosition = new Point(0, yPos);
-        }
-
         private void SpecialtyLabel_MouseEnter(object sender, EventArgs e)
         {
             SpecialtyLabel.ForeColor = SystemColors.ControlLight;
@@ -121,12 +116,12 @@ namespace UniversityDB
 
         private void Session_Click(object sender, EventArgs e)
         {
-            NavigateToSection(4769);
+            ControlsManager.ShowControl("Session", MainPanel);
         }
 
         private void Study_plan_Click(object sender, EventArgs e)
         {
-            NavigateToSection(5717);
+            ControlsManager.ShowControl("StudyPlan", MainPanel);
         }
     }
 }

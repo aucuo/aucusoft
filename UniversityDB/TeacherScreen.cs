@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityDB.Controls.Student;
+using UniversityDB.Controls.Admin;
 
 namespace UniversityDB
 {
@@ -15,25 +17,22 @@ namespace UniversityDB
         public TeacherScreen()
         {
             InitializeComponent();
-        }
-        private void NavigateToSection(int yPos)
-        {
-            MainPanel.AutoScrollPosition = new Point(0, yPos);
+            UniversityDB.Controls.Student.ControlsManager.ShowControl("Lessons", MainPanel);
         }
 
         private void DiplomaLabel_Click(object sender, EventArgs e)
         {
-            NavigateToSection(3);
+            UniversityDB.Controls.Student.ControlsManager.ShowControl("Diploma", MainPanel);
         }
 
         private void Lessons_Click(object sender, EventArgs e)
         {
-            NavigateToSection(957);
+            UniversityDB.Controls.Student.ControlsManager.ShowControl("Lessons", MainPanel);
         }
 
         private void Groups_Click(object sender, EventArgs e)
         {
-            NavigateToSection(1914);
+            UniversityDB.Controls.Student.ControlsManager.ShowControl("Groups", MainPanel);
         }
 
         private void DiplomaLabel_MouseEnter(object sender, EventArgs e)
@@ -88,12 +87,12 @@ namespace UniversityDB
 
         private void Session_Click(object sender, EventArgs e)
         {
-            NavigateToSection(2873);
+            UniversityDB.Controls.Admin.ControlsManager.ShowControl("Session", MainPanel);
         }
 
         private void Study_plan_Click(object sender, EventArgs e)
         {
-            NavigateToSection(3821);
+            UniversityDB.Controls.Student.ControlsManager.ShowControl("StudyPlan", MainPanel);
         }
     }
 }

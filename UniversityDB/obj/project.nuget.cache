@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kNQfQYEb+/Wkf0s3BQuyzASvHfXsJZVM9Zln5rgMSCsgQvQw1Y67z2YYobP6OcyWtHZHqE0Dh0DzHmQScInWAg==",
+  "dgSpecHash": "L6Kpq7Qjdk/THa47BAAoMiWlUZnoKjdFw0v9NQfbnOraiH6/BYc9i3rmNKt+e02eJBm3ENIN1Jz+wGoTMeKU+Q==",
   "success": true,
-  "projectFilePath": "D:\\Desktop\\Freelance\\UniversityDB\\UniversityDB.csproj",
+  "projectFilePath": "D:\\Desktop\\Freelance\\aucusoft\\UniversityDB\\UniversityDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aucuo\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\aucuo\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",

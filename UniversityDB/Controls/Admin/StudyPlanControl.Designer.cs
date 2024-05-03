@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelStudyPlan = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox17 = new System.Windows.Forms.ComboBox();
             this.label66 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
@@ -38,20 +40,18 @@
             this.comboBox15 = new System.Windows.Forms.ComboBox();
             this.label53 = new System.Windows.Forms.Label();
             this.button31 = new System.Windows.Forms.Button();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label60 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.button33 = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
-            this.label59 = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelStudyPlan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelStudyPlan
             // 
+            this.panelStudyPlan.Controls.Add(this.button4);
             this.panelStudyPlan.Controls.Add(this.dataGridView1);
             this.panelStudyPlan.Controls.Add(this.comboBox17);
             this.panelStudyPlan.Controls.Add(this.label66);
@@ -62,18 +62,50 @@
             this.panelStudyPlan.Controls.Add(this.comboBox15);
             this.panelStudyPlan.Controls.Add(this.label53);
             this.panelStudyPlan.Controls.Add(this.button31);
-            this.panelStudyPlan.Controls.Add(this.comboBox13);
+            this.panelStudyPlan.Controls.Add(this.comboBox1);
             this.panelStudyPlan.Controls.Add(this.label60);
             this.panelStudyPlan.Controls.Add(this.label58);
             this.panelStudyPlan.Controls.Add(this.button33);
             this.panelStudyPlan.Controls.Add(this.button32);
-            this.panelStudyPlan.Controls.Add(this.label59);
-            this.panelStudyPlan.Controls.Add(this.textBox21);
             this.panelStudyPlan.Location = new System.Drawing.Point(3, 2);
             this.panelStudyPlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelStudyPlan.Name = "panelStudyPlan";
             this.panelStudyPlan.Size = new System.Drawing.Size(1168, 721);
             this.panelStudyPlan.TabIndex = 35;
+            // 
+            // button4
+            // 
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(285, 260);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(96, 28);
+            this.button4.TabIndex = 75;
+            this.button4.Text = "Add";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 409);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1168, 312);
+            this.dataGridView1.StandardTab = true;
+            this.dataGridView1.TabIndex = 138;
             // 
             // comboBox17
             // 
@@ -113,7 +145,7 @@
             // comboBox16
             // 
             this.comboBox16.FormattingEnabled = true;
-            this.comboBox16.Location = new System.Drawing.Point(830, 117);
+            this.comboBox16.Location = new System.Drawing.Point(682, 117);
             this.comboBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox16.Name = "comboBox16";
             this.comboBox16.Size = new System.Drawing.Size(224, 23);
@@ -122,7 +154,7 @@
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(830, 100);
+            this.label64.Location = new System.Drawing.Point(682, 100);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(81, 15);
             this.label64.TabIndex = 132;
@@ -131,7 +163,7 @@
             // comboBox15
             // 
             this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Location = new System.Drawing.Point(541, 117);
+            this.comboBox15.Location = new System.Drawing.Point(447, 117);
             this.comboBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox15.Name = "comboBox15";
             this.comboBox15.Size = new System.Drawing.Size(224, 23);
@@ -140,7 +172,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(541, 100);
+            this.label53.Location = new System.Drawing.Point(447, 100);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(75, 15);
             this.label53.TabIndex = 130;
@@ -157,15 +189,16 @@
             this.button31.TabIndex = 127;
             this.button31.Text = "Delete";
             this.button31.UseVisualStyleBackColor = true;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
-            // comboBox13
+            // comboBox1
             // 
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Location = new System.Drawing.Point(94, 117);
-            this.comboBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(224, 23);
-            this.comboBox13.TabIndex = 123;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(294, 117);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(139, 23);
+            this.comboBox1.TabIndex = 123;
             // 
             // label60
             // 
@@ -180,7 +213,7 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(379, 100);
+            this.label58.Location = new System.Drawing.Point(294, 100);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(65, 15);
             this.label58.TabIndex = 124;
@@ -197,6 +230,7 @@
             this.button33.TabIndex = 126;
             this.button33.Text = "Edit";
             this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
             // button32
             // 
@@ -209,44 +243,7 @@
             this.button32.TabIndex = 125;
             this.button32.Text = "Save";
             this.button32.UseVisualStyleBackColor = true;
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(94, 100);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(89, 15);
-            this.label59.TabIndex = 122;
-            this.label59.Text = "Specialty Name";
-            // 
-            // textBox21
-            // 
-            this.textBox21.Location = new System.Drawing.Point(378, 117);
-            this.textBox21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(91, 23);
-            this.textBox21.TabIndex = 121;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 409);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1168, 312);
-            this.dataGridView1.StandardTab = true;
-            this.dataGridView1.TabIndex = 138;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // StudyPlanControl
             // 
@@ -274,13 +271,12 @@
         private ComboBox comboBox15;
         private Label label53;
         private Button button31;
-        private ComboBox comboBox13;
         private Label label60;
         private Label label58;
         private Button button33;
         private Button button32;
-        private Label label59;
-        private TextBox textBox21;
         private DataGridView dataGridView1;
+        private Button button4;
+        private ComboBox comboBox1;
     }
 }

@@ -37,11 +37,11 @@ export const Login = observer(() => {
                     }
                     <div className="input login__input">
                         <input type="text" autoComplete="on" placeholder="Username" value={username}
-                               onChange={e => setUsername(e.target.value)} required maxLength={20}/>
+                               onChange={e => setUsername(e.target.value)} required maxLength={20} minLength={4}/>
                     </div>
                     <div className="input login__input">
                         <input type="password" autoComplete="on"  placeholder="Password" value={password}
-                               onChange={e => setPassword(e.target.value)} required maxLength={20}/>
+                               onChange={e => setPassword(e.target.value)} required maxLength={20} minLength={4}/>
                     </div>
                     <button type="submit" className="button login__button">Login</button>
                 </form>

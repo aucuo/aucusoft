@@ -32,7 +32,7 @@ class AuthStore {
     login = async (username: string, password: string) => {
         this.isLoading = true;
         try {
-            const response = await fetch('https://localhost:5001/aucusoft/user/login', {
+            const response = await fetch('https://localhost:7030/aucusoft/user/login', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({username, password})

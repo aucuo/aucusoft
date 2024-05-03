@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityDB.Controls.Admin;
 
 namespace UniversityDB
 {
@@ -15,11 +16,7 @@ namespace UniversityDB
         public DeaneryScreen()
         {
             InitializeComponent();
-        }
-
-        private void NavigateToSection(int yPos)
-        {
-            MainPanel.AutoScrollPosition = new Point(0, yPos);
+            ControlsManager.ShowControl("Students", MainPanel);
         }
 
         private void StudentsLabel_MouseEnter(object sender, EventArgs e)
@@ -34,27 +31,27 @@ namespace UniversityDB
 
         private void StudentsLabel_Click(object sender, EventArgs e)
         {
-            NavigateToSection(3);
+            ControlsManager.ShowControl("Students", MainPanel);
         }
 
         private void DiplomaLabel_Click(object sender, EventArgs e)
         {
-            NavigateToSection(921);
+            ControlsManager.ShowControl("Diploma", MainPanel);
         }
 
         private void Lessons_Click(object sender, EventArgs e)
         {
-            NavigateToSection(1875);
+            ControlsManager.ShowControl("Lessons", MainPanel);
         }
 
         private void Departments_Click(object sender, EventArgs e)
         {
-            NavigateToSection(2832);
+            ControlsManager.ShowControl("Departments", MainPanel);
         }
 
         private void Groups_Click(object sender, EventArgs e)
         {
-            NavigateToSection(3778);
+            ControlsManager.ShowControl("Groups", MainPanel);
         }
 
         private void DiplomaLabel_MouseEnter(object sender, EventArgs e)
@@ -129,17 +126,17 @@ namespace UniversityDB
 
         private void Session_Click(object sender, EventArgs e)
         {
-            NavigateToSection(4737);
+            ControlsManager.ShowControl("Session", MainPanel);
         }
 
         private void Research_Click(object sender, EventArgs e)
         {
-            NavigateToSection(5685);
+            ControlsManager.ShowControl("Research", MainPanel);
         }
 
         private void Study_plan_Click(object sender, EventArgs e)
         {
-            NavigateToSection(6635);
+            ControlsManager.ShowControl("StudyPlan", MainPanel);
         }
     }
 }

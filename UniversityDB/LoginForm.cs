@@ -1,4 +1,8 @@
 using MySql.Data.MySqlClient;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace UniversityDB
 {
     public partial class LoginForm : Form
@@ -6,8 +10,6 @@ namespace UniversityDB
         public LoginForm()
         {
             InitializeComponent();
-
-
         }
 
         private void EnterButton_MouseEnter(object sender, EventArgs e)
@@ -22,44 +24,48 @@ namespace UniversityDB
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            string username = Username.Text.ToString();
-            string password = Password.Text.ToString();
-            string MysqlCon = $"server=127.0.0.2;port=3306;user={username};database=university;password={password}";
-            if (String.IsNullOrEmpty(username))
+            string username = Username.Text;
+            string password = Password.Text;
+            string MysqlCon = $"server=127.0.0.2;port=3306;user={username};database=university;password={password};";
+
+            if (string.IsNullOrEmpty(username))
             {
-                MessageBox.Show("Поля Логин  обязательно для заполнения!");
+                MessageBox.Show("Поля обязательны для заполнения!");
+                return;
             }
-            else
+
+            try
             {
-                try
+                using (MySqlConnection mySqlConnection = new MySqlConnection(MysqlCon))
                 {
-                    MySqlConnection mySqlConnection = new MySqlConnection(MysqlCon);
                     mySqlConnection.Open();
-                    /*MySqlCommand mySqlCommand = new MySqlCommand("select * from users", mySqlConnection);
-                    MySqlDataReader reader = mySqlCommand.ExecuteReader();*/
                     if (mySqlConnection.State == System.Data.ConnectionState.Open)
                     {
                         MessageBox.Show("Вы успешно авторизовались");
-
-                        // тут кода писать
-
-                        switch (username)
-                        {
-                            case "admin":
-                                Application.Run(new AdminScreen());
-                                break;
-                            default:
-                                Application.Run(new AdminScreen());
-                                break;
-                        }
+                        ShowRoleSpecificScreen(username);
                     }
                     mySqlConnection.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Invalid ты: {ex}");
-                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Логин или пароль неправильные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ShowRoleSpecificScreen(string username)
+        {
+            Form screen = username switch
+            {
+                "root" => new AdminScreen(),
+                "teacher" => new TeacherScreen(),
+                "deanery" => new DeaneryScreen(),
+                "student" => new StudentScreen(),
+                _ => new StudentScreen()
+            };
+            this.Hide();
+            screen.ShowDialog();
+            this.Close();
         }
     }
 }
