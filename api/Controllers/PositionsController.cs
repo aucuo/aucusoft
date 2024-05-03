@@ -18,7 +18,7 @@ namespace api.Controllers
             p => new
             {
                 ID = p.ID,
-                p.Title,
+                p.Name,
                 p.SalaryGrade,
             };
         protected override async Task<object> GetAdditionalDataAsync()

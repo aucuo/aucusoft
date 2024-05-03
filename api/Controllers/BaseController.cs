@@ -12,7 +12,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace api.Controllers
 {
     [Route("aucusoft/[controller]")]
-    //[Authorize]
+    [Authorize]
     public abstract class BaseController<TEntity, TContext> : ControllerBase
         where TEntity : class
         where TContext : DbContext
@@ -111,15 +111,29 @@ namespace api.Controllers
 
                 return query;
             }
-            IQueryable<TEntity> ApplyFieldFilter(IQueryable<TEntity> query, string fieldName, string fieldValue, string dateFilterType)
+            IQueryable<TEntity> ApplyFieldFilter(IQueryable<TEntity> query, string fieldName, string fieldValue)
             {
                 if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(fieldValue))
                 {
                     var parameterExp = Expression.Parameter(typeof(TEntity), "entity");
-                    Expression propertyExp = Expression.PropertyOrField(parameterExp, fieldName);
-                    Type propertyType = propertyExp.Type;
 
-                    // Обработка дат
+                    Expression propertyExp = parameterExp;
+                    Type propertyType = null;
+
+                    if (fieldName.EndsWith("Id"))
+                    {
+                        string navigationPropertyName = fieldName.Remove(fieldName.Length - 2);
+                        propertyExp = Expression.PropertyOrField(parameterExp, navigationPropertyName);
+
+                        propertyExp = Expression.PropertyOrField(propertyExp, "Name");
+                        propertyType = propertyExp.Type;
+                    }
+                    else
+                    {
+                        propertyExp = Expression.PropertyOrField(parameterExp, fieldName);
+                        propertyType = propertyExp.Type;
+                    }
+
                     if (propertyType == typeof(DateTime) || propertyType == typeof(DateTime?))
                     {
                         DateTime parsedDate;
@@ -151,7 +165,7 @@ namespace api.Controllers
                         MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
                         var someValue = Expression.Constant(fieldValue, typeof(string));
                         var containsMethodExp = Expression.Call(propertyExp, method, someValue);
-                        var lambda = Expression.Lambda<Func<TEntity, bool>>(containsMethodExp, parameterExp);
+                        var lambda = Expression.Lambda<Func<TEntity, bool>>(containsMethodExp, new ParameterExpression[] { parameterExp });
                         query = query.Where(lambda);
                     }
                     else
@@ -186,7 +200,7 @@ namespace api.Controllers
                 }
                 else if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(fieldValue))
                 {
-                    query = ApplyFieldFilter(query, fieldName, fieldValue, dateFilterType ?? "on"); // Default to "on"
+                    query = ApplyFieldFilter(query, fieldName, fieldValue);
                 }
 
                 // Apply projection

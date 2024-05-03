@@ -27,7 +27,7 @@ namespace api.Controllers
             };
         protected override async Task<object> GetAdditionalDataAsync()
         {
-            var TaskFK = await _context.Tasks.Select(t => new { t.ID, Name = t.Description + ": " + t.Project.Name }).ToListAsync();
+            var TaskFK = await _context.Tasks.Select(t => new { t.ID, Name = t.Name + ": " + t.Project.Name }).ToListAsync();
             var EmployeeFK = await _context.Employees.Select(e => new { e.ID, e.Name }).ToListAsync();
 
             return new

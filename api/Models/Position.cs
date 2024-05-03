@@ -7,7 +7,7 @@ public partial class Position
 {
     public int ID { get; set; }
 
-    public string Title { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
     public int SalaryGrade { get; set; }
 

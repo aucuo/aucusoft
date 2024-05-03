@@ -1,30 +1,44 @@
 import './note.scss';
 import { Frame } from '@components/Frame/Frame.tsx';
+import {useEffect, useState} from "react";
 
 interface Props {
-    header: string;
-    text: string;
     menu?: boolean;
 }
 
-export function Note({ header, text, menu = true }: Props) {
+export function Note({menu = true}: Props) {
+    const [header, setHeader] = useState('');
+    const [text, setText] = useState('');
 
-    const handleHeaderChange = () => {
-    }
+    useEffect(() => {
+        const storedHeader = localStorage.getItem('nt-hdr');
+        const storedText = localStorage.getItem('nt-txt');
+        if (storedHeader) setHeader(storedHeader);
+        if (storedText) setText(storedText);
+    }, []);
 
-    const handleTextChange = () => {
-    }
+    const handleHeaderChange = (newHeader: string) => {
+        localStorage.setItem('nt-hdr', newHeader);
+        setHeader(newHeader);
+    };
+
+    const handleTextChange = (newText: string) => {
+        localStorage.setItem('nt-txt', newText);
+        setText(newText);
+    };
 
     return (
         <Frame name={'Notes'}>
             {menu && <Menu />}
             <div className="note">
                 <div className="note__wrapper">
-                    <h2 className="note__header" contentEditable={true} onBlur={handleHeaderChange}
+                    <h2 className="note__header" contentEditable={true}
+                        onBlur={e => handleHeaderChange(e.currentTarget.textContent || '')}
                         suppressContentEditableWarning={true}>
                         {header}
                     </h2>
-                    <div className="note__text" contentEditable={true} onBlur={handleTextChange}
+                    <div className="note__text" contentEditable={true}
+                         onBlur={e => handleTextChange(e.currentTarget.textContent || '')}
                          suppressContentEditableWarning={true}>
                         {text}
                     </div>
@@ -50,11 +64,11 @@ function Menu() {
     };
 
     let icons = [
-        { name: "task", action: () => console.log('Task action') },
-        { name: "add-square", action: () => console.log('Add square action') },
+        // { name: "task", action: () => console.log('Task action') },
+        // { name: "add-square", action: () => console.log('Add square action') },
         { name: "text-bold", action: () => applyStyle('bold')},
         { name: "text-italic", action: () => applyStyle('italic') },
-        { name: "verify", action: () => console.log('Verify action') },
+        // { name: "verify", action: () => console.log('Verify action') },
     ];
 
     return (

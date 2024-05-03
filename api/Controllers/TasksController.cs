@@ -22,7 +22,7 @@ namespace api.Controllers
             {
                 ID = pt.ID,
                 ProjectFK = pt.ProjectId,
-                pt.Description,
+                pt.Name,
                 pt.StartDate,
                 pt.EndDate,
                 StatusFK = pt.StatusId,

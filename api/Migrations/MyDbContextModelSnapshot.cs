@@ -234,13 +234,13 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("PositionID");
 
-                    b.Property<int>("SalaryGrade")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
+
+                    b.Property<int>("SalaryGrade")
+                        .HasColumnType("int");
 
                     b.HasKey("ID")
                         .HasName("PRIMARY");
@@ -354,14 +354,14 @@ namespace api.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TaskID");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
                     b.Property<int?>("EmployeeID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int")
@@ -566,7 +566,7 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("projects_ibfk_1");
 
-                    b.HasOne("api.Models.Manager", "ProjectManager")
+                    b.HasOne("api.Models.Manager", "Manager")
                         .WithMany("Projects")
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.SetNull)
@@ -574,7 +574,7 @@ namespace api.Migrations
 
                     b.Navigation("Client");
 
-                    b.Navigation("ProjectManager");
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("api.Models.Projectdocument", b =>

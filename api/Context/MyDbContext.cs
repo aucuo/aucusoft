@@ -212,7 +212,7 @@ public partial class MyDbContext : DbContext
             entity.ToTable("positions");
 
             entity.Property(e => e.ID).HasColumnName("PositionID");
-            entity.Property(e => e.Title).HasMaxLength(255);
+            entity.Property(e => e.Name).HasMaxLength(255);
         });
 
         modelBuilder.Entity<Project>(entity =>
@@ -297,7 +297,7 @@ public partial class MyDbContext : DbContext
             entity.HasIndex(e => e.StatusId, "StatusID");
 
             entity.Property(e => e.ID).HasColumnName("TaskID");
-            entity.Property(e => e.Description).HasColumnType("text");
+            entity.Property(e => e.Name).HasColumnType("text");
             entity.Property(e => e.ProjectId).HasColumnName("ProjectID");
             entity.Property(e => e.StatusId).HasColumnName("StatusID");
 

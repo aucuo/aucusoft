@@ -14,9 +14,7 @@ export function WorkflowContent() {
                 <Table tableName="Projects"/>
             </div>
             <div className="col-12 col-xl-4">
-                <Note
-                    header='Hire a new web designer'
-                    text='Lorem Ipsum is simply dummy text of the printing and typesetting industry. It to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting'/>
+                <Note/>
             </div>
             <div className="col-12 col-xl-6">
                 <Table tableName="Employee"/>

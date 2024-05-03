@@ -14,6 +14,9 @@ export const Filters = observer(() => {
     const handleFilterSubmit = (field:string, value:string, dateType:string) => {
         if (field.endsWith('Date')) {
             TableStore.setFilter(field, value, dateType); // Modify setFilter to handle date type
+        } else if (field.endsWith('FK')) {
+            field = field.replace('FK', 'Id')
+            TableStore.setFilter(field, value);
         } else {
             TableStore.setFilter(field, value);
         }
@@ -22,11 +25,14 @@ export const Filters = observer(() => {
     const handleClearFilter = () => {
         setFilterField('');
         setFilterValue('');
+        TableStore.clearFilters();
+        TableStore.loadData();
+    };
+
+    const handleClearSorting = () => {
         setSortField('');
         setSortDirection('asc');
-        setFilterField('');
-        setFilterValue('');
-        TableStore.clearFilters();
+        TableStore.clearSorting();
         TableStore.loadData();
     };
     return (
@@ -145,7 +151,7 @@ export const Filters = observer(() => {
                         </button>
                         <button className="button button--small dropdown-item-button"
                                 style={{margin: "10px 0 0 0"}}
-                                onClick={handleClearFilter}>Clear
+                                onClick={handleClearSorting}>Clear
                         </button>
                     </div>
                 </Dropdown.Menu>

@@ -37,7 +37,7 @@ class TableStore {
 
     constructor(tableName: string) {
         makeAutoObservable(this);
-        this.url = `https://localhost:7030/aucusoft/${tableName}`;
+        this.url = `https://localhost:5001/aucusoft/${tableName}`;
     }
 
     // Search
@@ -110,8 +110,11 @@ class TableStore {
 
     clearFilters() {
         this.urlFilters = undefined;
-        // this.urlSortBy = undefined;
-        // this.urlSortDirection = 'asc';
+    }
+
+    clearSorting() {
+        this.urlSortBy = undefined;
+        this.urlSortDirection = 'asc';
     }
 
     // API
@@ -211,7 +214,7 @@ class TableStore {
 
     async addData(item: DataItem) {
         this.isLoading = true;
-        const baseUrl = this.url || "https://localhost:7030/aucusoft/Projects";
+        const baseUrl = this.url || "https://localhost:5001/aucusoft/Projects";
         const params = new URLSearchParams();
 
         Object.keys(item).forEach((key) => {
@@ -254,7 +257,7 @@ class TableStore {
             return;
         }
 
-        const baseUrl = this.url || "https://localhost:7030/aucusoft/Projects";
+        const baseUrl = this.url || "https://localhost:5001/aucusoft/Projects";
         const params = new URLSearchParams();
 
         Object.keys(item).forEach(key => {
